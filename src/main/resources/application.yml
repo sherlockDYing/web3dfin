@@ -1,0 +1,21 @@
+server:
+  port: 8080
+
+spring:
+  thymeleaf:
+    cache: false
+    prefix: classpath:/templates/
+    suffix: .html
+    encoding: UTF-8
+    mode: HTML5
+  datasource:
+    name: web3d
+    url: jdbc:mysql://127.0.0.1:3306/web3d
+    username: root
+    password: 123456
+    driver-class-name: com.mysql.jdbc.Driver
+
+mybatis:
+  mapper-locations: classpath:mapper/*.xml
+  type-aliases-package: com.example.springboottest1.entity
+

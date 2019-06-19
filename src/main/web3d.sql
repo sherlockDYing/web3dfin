@@ -1,0 +1,23 @@
+CREATE SCHEMA web3d;
+
+DROP TABLE IF EXISTS user;
+DROP TABLE IF EXISTS comment;
+
+CREATE TABLE IF NOT EXISTS user (
+  id INT(11) NOT NULL AUTO_INCREMENT,
+  username VARCHAR(50) NOT NULL,
+  password VARCHAR(50) NOT NULL,
+  gender VARCHAR (4),
+  role INT(4),
+  age INT(4),
+  intro VARCHAR(400),
+  PRIMARY KEY (id)
+);
+
+CREATE TABLE IF NOT EXISTS comment(
+  cid INT(11) NOT NULL AUTO_INCREMENT,
+  username VARCHAR(50) NOT NULL,
+  statuename VARCHAR(50) NOT NULL,
+  detail VARCHAR(400) NOT NULL,
+  PRIMARY KEY (cid)
+);
