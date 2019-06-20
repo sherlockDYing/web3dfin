@@ -17,7 +17,7 @@ public interface userMapper {
 
     //新用户注册，向user表中添加数据
     int adduser(@Param("username") String username,
-                @Param("gender") int gender,
+                @Param("gender") String gender,
                 @Param("location") String location,
                 @Param("introduction") String introduction,
                 @Param("workplace") String workplace,

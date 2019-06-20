@@ -1,0 +1,756 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:v-on="http://www.w3.org/1999/xhtml" xmlns:th="http://www.springframework.org/schema/jdbc">
+<head>
+    <meta charset=utf-8>
+    <title>在线VR雕塑展</title>
+    <link href="/lib/bootstrap-3.3.7/css/bootstrap.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <script src="http://libs.baidu.com/jquery/2.1.4/jquery.min.js"></script>
+
+    <script src="/js/three.js"></script>
+    <script src="/js/FirstPersonControls.js"></script>
+    <script src="/js/socket.io.js"></script>
+    <script src="/js/FBXLoader.js"></script>
+    <script src="/js/GLTFLoader.js"></script>
+    <script src="/js/inflate.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js"></script>
+    <style>
+        html, body {
+            width: 100%;
+            height: 100%;
+        }
+
+        body {
+            background-color: #ffffff;
+            margin: 0;
+            overflow: hidden;
+            font-family: arial;
+        }
+
+        #blocker {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+
+        #hinter1 {
+            position: absolute;
+        }
+
+        #hinter2 {
+            position: absolute;
+        }
+
+        #instructions {
+            width: 100%;
+            height: 100%;
+            display: -webkit-box;
+            display: -moz-box;
+            display: box;
+            -webkit-box-orient: horizontal;
+            -moz-box-orient: horizontal;
+            box-orient: horizontal;
+            -webkit-box-pack: center;
+            -moz-box-pack: center;
+            box-pack: center;
+            -webkit-box-align: center;
+            -moz-box-align: center;
+            box-align: center;
+            color: #ffffff;
+            text-align: center;
+            cursor: pointer;
+        }
+    </style>
+
+</head>
+<body>
+<div id="blocker">
+    <div id="instructions">
+        <span style="font-size:50px">Welcome!</span>
+        <br/><span style="font-size:40px">Click on the scene to play</span>
+        <br/>
+        (W, A, S, D = Move, MOUSE = Look around)
+        <br/>
+        <br/>
+        <button type="button" class="btn btn-default btn-lg" onclick="toPersonalInfo()">
+            Check my personnal Info!
+        </button>
+        <br/>
+        <br/>
+        <button type="button" id="chatbtn" class="btn btn-default btn-lg" data-toggle="modal"
+                data-target="#chattingModal">
+            Go to the Chatting Room!
+        </button>
+        <br/>
+        <br/>
+        <button type="button" class="btn btn-danger btn-lg" onclick="quit()">
+            Exit
+        </button>
+    </div>
+</div>
+<div id="hinter1" class="alert alert-success  col-md-4 col-md-offset-4">
+    <h4 class="system text-center">Press <strong>C</strong> to check the detail of this statue!</h4>
+</div>
+<div id="hinter2" class="alert alert-success  col-md-4 col-md-offset-4">
+    <h4 class="system text-center">Press <strong>F</strong> to check the detail of this people!</h4>
+</div>
+<!-- Modal -->
+<div class="modal" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                </button>
+                <h4 class="modal-title" id="myModalLabel">Statue</h4>
+            </div>
+            <div class="modal-body">
+                <ul class="nav nav-tabs">
+                    <li class="active"><a href="#detail" data-toggle="tab">Detail</a></li>
+                    <li><a href="#author" data-toggle="tab">Author</a></li>
+                    <li><a href="#comment" data-toggle="tab">Comment</a></li>
+                    <li><a href="#saysth" data-toggle="tab">Say something!</a></li>
+                </ul>
+                <div id="myTabContent" class="tab-content">
+
+                    <!-- statue detail -->
+                    <div class="tab-pane fade in active" id="detail">
+                        <div class="thumbnail">
+                            <img  id="statueimg" src="/img/statueDEMO.jpg" alt="..." class="img-thumbnail">
+                            <div class="caption">
+                                <h3 id="statuename">Statue name</h3>
+                                <p id ="introduction">details details details details details details details details details details
+                                    details details
+                                    details details details details details details details details details details
+                                    details details
+                                    details details details details </p>
+                                <p class="text-right text-muted"><span class="glyphicon glyphicon-thumbs-up"  aria-hidden="true"></span><span id = "likenumber">3 </span> people like it</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tab-pane fade" id="author">
+                        <div class="thumbnail">
+                            <img id=authorimg src="/img/authorDEMO.jpg" alt="..." class="img-thumbnail">
+                            <div class="caption">
+                                <h3 id="authorname">Author name</h3>
+                                <p id="authorintro">details details details details details details details details details details
+                                    details details
+                                    details details details details details details details details details details
+                                    details details
+                                    details details details details </p>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="tab-pane fade" id="comment">
+                        <div id="q-review-container" class="panel-body thumbnail">
+                            <div id="comments-list">
+                                <table class="table table-condensed table-striped table-hover table-bordered">
+                                    <tbody>
+                                    <tr>
+                                        <td class="col-md-1" style="width: 5%"><span>1</span></td>
+                                        <td class="col-md-4 col-lg-2">
+                                            <div>tester1</div>
+                                            <div>2019-05-08 18:52:27</div>
+                                        </td>
+                                        <td class="review-content">
+                                            <div>I'm comment demo1. I like this status.</div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="col-md-1" style="width: 5%"><span>2</span></td>
+                                        <td class="col-md-4 col-lg-2">
+                                            <div>tester2</div>
+                                            <div>2019-05-08 19:28:55</div>
+                                        </td>
+                                        <td class="review-content">
+                                            <div>I'm comment demo2. I like this status</div>
+                                        </td>
+                                    </tr>
+                                    <tr data-index="2" data-id="2155">
+                                        <td class="col-md-1" style="width: 5%"><span>3</span></td>
+                                        <td class="col-md-4 col-lg-2">
+                                            <div>tester3</div>
+                                            <div>2019-05-08 19:34:06</div>
+                                        </td>
+                                        <td class="review-content">
+                                            <div>I'm comment demo3. I like this status</div>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tab-pane fade" id="saysth">
+                        <div class="thumbnail">
+                            <div id="q-comment-form-modal"
+                                 class="review-comment-modal ui-dialog-content ui-widget-content"
+                                 style="display: block; width: auto; ">
+                                <form>
+                                    <div>
+                                        <label class="col-md-3 control-label"> Your comment</label>
+                                        <div class="col-md-9">
+                                            <textarea name="content" rows="6" class="form-control"></textarea>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+
+                            <div class="ui-dialog-buttonpane ui-widget-content ui-helper-clearfix">
+                                <div class="ui-dialog-buttonset">
+                                    <button type="button" id="submit-comment" class="btn btn-primary">Submit</button>
+                                    <button type="button" class="btn btn-default">Clear</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" id="closebtn" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary"><span class="glyphicon glyphicon-heart"
+                                                                    aria-hidden="true"></span> I like it
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                </button>
+                <h4 class="modal-title">User</h4>
+            </div>
+            <div class="modal-body">
+
+
+                <ul class="nav nav-tabs">
+                    <li class="active"><a href="#info" data-toggle="tab">Information</a></li>
+                    <li><a href="#personnalComment" data-toggle="tab">Comment</a></li>
+                    <li><a href="#collection" data-toggle="tab">Collection</a></li>
+                </ul>
+
+
+                <div class="tab-content">
+                    <div class="tab-pane fade in active" id="info">
+                        <div class="thumbnail">
+                            <div>
+                                <img src="/img/demo001.jpeg" alt="用户头像"
+                                     class="img-responsive img-circle col-md-6  col-md-offset-3">
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="list-group">
+                                        <div class="list-group-item"><p><strong>昵称</strong><span
+                                                class="name pull-right">东东</span></p></div>
+                                        <div class="list-group-item"><p><strong>性别</strong><span
+                                                class="gender pull-right">男</span></p></div>
+                                        <div class="list-group-item"><p><strong>所在地</strong><span
+                                                class="location pull-right">上海市杨浦区</span></p></div>
+                                        <div class="list-group-item"><p><strong>工作单位/学校</strong><span
+                                                class="org pull-right">复旦大学</span></p></div>
+                                        <div class="list-group-item"><p><strong>个人简介</strong><span
+                                                class="intro pull-right">hellohellohellohellohello</span></p></div>
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="tab-pane fade" id="personnalComment">
+                        <div class="panel-body thumbnail">
+                            <table class="table table-over " id="accordion">
+                                <thead>
+                                <tr>
+                                    <th>发表时间</th>
+                                    <th>对象</th>
+                                    <th>评论概要</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr class="bg-info">
+                                    <th class="comment-time">2019-05-05 21:23</th>
+                                    <th class="comment-obj">某雕塑</th>
+                                    <th class="comment-abstract">
+                                        <a data-toggle="collapse" data-parent="#accordion" href="#comment-0">
+                                            Nihil anim keffiyeh helvetica<span>...</span>
+                                        </a></th>
+                                </tr>
+                                <tr class="bg-warning panel-collapse collapse" id="comment-0">
+                                    <td colspan="3">
+                                        <div>
+                                            Nihil anim keffiyeh helvetica, craft beer labore wes anderson
+                                            cred nesciunt sapiente ea proident. Ad vegan excepteur butcher
+                                            vice lomo.
+                                        </div>
+                                    </td>
+                                </tr>
+
+                                <tr class="bg-info">
+                                    <th class="comment-time">2019-05-05 21:23</th>
+                                    <th class="comment-obj">某雕塑</th>
+                                    <th class="comment-abstract">
+                                        <a data-toggle="collapse" data-parent="#accordion" href="#comment-1">
+                                            Nihil anim keffiyeh helvetica<span>...</span>
+                                        </a></th>
+                                </tr>
+                                <tr class="bg-warning panel-collapse collapse" id="comment-1">
+                                    <td colspan="3">
+                                        <div>
+                                            Nihil anim keffiyeh helvetica, craft beer labore wes anderson
+                                            cred nesciunt sapiente ea proident. Ad vegan excepteur butcher
+                                            vice lomo.
+                                        </div>
+                                    </td>
+                                </tr>
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+
+                    <div class="tab-pane fade" id="collection">
+                        <div class="panel-body thumbnail">
+                            <table class="table table-over " id="accordion-collect">
+                                <thead>
+                                <tr>
+                                    <th>收藏时间</th>
+                                    <th>对象</th>
+                                    <th>作者</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr class="bg-info">
+                                    <th class="comment-time">2019-05-05 21:23</th>
+                                    <th class="comment-obj">某雕塑</th>
+                                    <th class="comment-who">佚名</th>
+                                </tr>
+
+
+                                <tr class="bg-info">
+                                    <th class="comment-time">2019-05-05 21:23</th>
+                                    <th class="comment-obj">某雕塑</th>
+                                    <th class="comment-who">米开朗琪罗</th>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" id="closebtn2" class="btn btn-default" data-dismiss="modal">Close</button>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="chattingModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                </button>
+                <h4 class="modal-title">Chatting</h4>
+            </div>
+            <div class="modal-body">
+
+                <div id="app" class="row">
+                    <!-- Connected users list -->
+                    <div class="col-md-3 col-md-offset-1">
+                        <div class="text-primary  text-center">
+                            <h5><strong> CONNECTED USERS
+                            </strong>
+                            </h5>
+                        </div>
+
+                        <div class="panel panel-default">
+                            <div class="panel-body">
+                                <ul class="collection" id="user-list" style="list-style: none;">
+                                    <li v-for="item in onlineUsers_array">{{item}}</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Message Area -->
+                    <div class="col-md-6 col-md-offset-1 panel panel-default" id="chat-col" style="display: block;">
+                        <div class="panel-body">
+                            <div id="messages" style="overflow:auto; height:300px">
+                                <h5 class=" text-center">Welcome you join Chat!</h5>
+                                <ul style="list-style: none;">
+                                    <li v-for="item in message_array">{{item}}</li>
+                                </ul>
+                            </div>
+
+                            <div>
+                                <!-- Message Form -->
+                                <form id="message-form">
+                                    <div class="input-field input-group ">
+                                        <!--<span class="input-group-addon " id="basic-addon1">MESSAGE</span>-->
+                                        <input type="text" class="form-control" v-model="message"
+                                               placeholder="Your message"
+                                               aria-describedby="basic-addon1">
+                                        <span class="input-group-btn">
+                            <button type="button" v-on:click="dealMessage" class="btn btn-primary">SEND
+                                <span class="glyphicon glyphicon glyphicon-bullhorn" aria-hidden="true"></span>
+                            </button>
+                        </span>
+                                    </div>
+                                    <div class="right-align">
+
+                                    </div>
+                                </form>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" id="closebtn3" class="btn btn-default" data-dismiss="modal">Close</button>
+
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    function toPersonalInfo() {
+        window.location.href = "/user/personalPage";
+    }
+
+    function quit() {
+        $.ajax({
+            type: "get",  //数据提交方式（post/get）
+            url: "/user/quit",  //提交到的url
+            dataType: "json",//返回的数据类型格式
+            success: function (msg) {
+                if (msg.code === 200) {
+                    alert("退出成功");
+                    window.location.href = "/user/loginPage";
+                    return false;
+                } else {
+                    alert("退出失败");
+                }
+            }
+        });
+    }
+</script>
+
+</body>
+<script th:inline="javascript">
+    var username = [[${user.username}]];
+    const socket = io('localhost:8080');
+
+
+    var camera, scene, renderer, controls, mixer;
+    var horizontalRaycaster, downRaycaster;
+    var rotation = new THREE.Vector3(); //当前的相机朝向
+    var vertex = new THREE.Vector3();
+    var color = new THREE.Color();
+    var tempStatueName;
+
+    var moveForward = false;
+    var moveBackward = false;
+    var moveLeft = false;
+    var moveRight = false;
+
+    var canJump = false;
+    var prevTime = performance.now();
+    var velocity = new THREE.Vector3();
+    var direction = new THREE.Vector3();
+
+    var checkState = false;
+    var lockState = true;
+    var detailState = false;
+    var checkID = -1;
+
+
+    var blocker = document.getElementById('blocker');
+    var instructions = document.getElementById('instructions');
+    var hinter1 = document.getElementById('hinter1');
+    var hinter2 = document.getElementById('hinter2');
+    hinter1.style.display = 'none';
+    hinter2.style.display = 'none';
+
+    var mixers = [];
+    // Our Javascript will go here.
+    //创建画布
+    scene = new THREE.Scene();
+    scene.background = new THREE.Color(0xcce0ff);
+    scene.fog = new THREE.Fog(0xcce0ff, 0, 750);
+    const SCREEN_WIDTH = window.innerWidth, SCREEN_HEIGHT = window.innerHeight;
+
+
+    const VIEW_ANGLE = 45, ASPECT = SCREEN_WIDTH / SCREEN_HEIGHT, NEAR = 0.3, FAR = 1000;
+    camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 1, 1000);
+
+
+    scene.add(camera);
+
+    renderer = new THREE.WebGLRenderer({antialias: true});
+    renderer.setSize(SCREEN_WIDTH, SCREEN_HEIGHT);
+    document.body.appendChild(renderer.domElement);
+
+
+    // soft white light
+    // const slight = new THREE.AmbientLight(0xaaaaaa);
+    // scene.add(slight);
+
+    //创建灯光
+    var light = new THREE.HemisphereLight(0xeeeeff, 0x777788, 0.75);
+    light.position.set(0.5, 1, 0.75);
+    scene.add(light);
+
+    var pointLight = new THREE.PointLight(0xffffff, 1, 300, 1);
+    pointLight.position.set(0, 100, 50);
+    scene.add(pointLight);
+
+
+    // floor
+    var floorGeometry = new THREE.PlaneBufferGeometry(2000, 2000, 100, 100);
+    floorGeometry.rotateX(-Math.PI / 2);
+    // vertex displacement
+    var position = floorGeometry.attributes.position;
+    for (var i = 0, l = position.count; i < l; i++) {
+        vertex.fromBufferAttribute(position, i);
+        vertex.x += Math.random() * 20 - 10;
+        vertex.y += Math.random() * 2;
+        vertex.z += Math.random() * 20 - 10;
+        position.setXYZ(i, vertex.x, vertex.y, vertex.z);
+    }
+    floorGeometry = floorGeometry.toNonIndexed(); // ensure each face has unique vertices
+    position = floorGeometry.attributes.position;
+    var colors = [];
+    for (var i = 0, l = position.count; i < l; i++) {
+        color.setHSL(Math.random() * 0.3 + 0.5, 0.75, Math.random() * 0.25 + 0.75);
+        colors.push(color.r, color.g, color.b);
+    }
+    floorGeometry.addAttribute('color', new THREE.Float32BufferAttribute(colors, 3));
+    var floorMaterial = new THREE.MeshBasicMaterial({vertexColors: THREE.VertexColors});
+    var floor = new THREE.Mesh(floorGeometry, floorMaterial);
+    floor.receiveShadow = true;
+    floor.castShadow = true;
+
+    scene.add(floor);
+
+
+    var loader = new THREE.FBXLoader();
+    loader.load("/model/fbx/statue/dawei.fbx", function (object) {
+        object.scale.multiplyScalar(.3);    // 缩放模型大小
+        object.position.y = 10;
+        object.position.z = -40;
+        object.castShadow = true;
+
+        object.traverse(function (child) {
+            if (child.isMesh) {
+                child.castShadow = false;
+                child.receiveShadow = false;
+            }
+        });
+        scene.add(object);
+        createBox(15, 10, 15, 0, 5, -40, "dawei")
+    });
+
+
+    loader.load("/model/fbx/statue/weinasi.fbx", function (object) {
+        object.scale.multiplyScalar(.1 / 5);    // 缩放模型大小
+        object.position.set(50, 10, -40);
+        scene.add(object);
+        createBox(15, 10, 15, 50, 5, -40, "weinasi")
+    });
+
+    loader.load("/model/fbx/statue/shenglinvshen.fbx", function (object) {
+        object.scale.multiplyScalar(.1 / 6);    // 缩放模型大小
+        object.position.set(-50, 10, -40);
+        scene.add(object);
+        createBox(15, 10, 15, -50, 5, -40, "shenglinvshen")
+    });
+    loader.load("/model/fbx/statue/shengmulianzi.fbx", function (object) {
+        object.scale.multiplyScalar(.3);    // 缩放模型大小
+        object.position.set(-70, 10, 40);
+        object.rotateY(Math.PI / 2);
+        scene.add(object);
+        createBox(30, 10, 48, -90, 5, 12, "shengmulianzi")
+    });
+
+    loader.load("/model/fbx/statue/sixiangzhe.fbx", function (object) {
+        object.scale.multiplyScalar(.3);    // 缩放模型大小
+        object.position.set(-70, 10, 90);
+        object.rotateY(Math.PI / 2);
+        scene.add(object);
+        createBox(25, 10, 30, -90, 5, 80, "sixiangzhe")
+    });
+
+    loader.load("/model/fbx/statue/chuisigaoluren.fbx", function (object) {
+        object.scale.multiplyScalar(.3);    // 缩放模型大小
+        object.position.set(40, 10, -60);
+        object.rotateY(3 * Math.PI / 2);
+        scene.add(object);
+        createBox(30, 10, 55, 85, 5, 25, "chuisigaoluren")
+
+    });
+
+    loader.load("/model/fbx/statue/zhitiebingzhe.fbx", function (object) {
+        object.scale.multiplyScalar(.3);    // 缩放模型大小
+        object.position.set(70, 10, 90);
+        object.rotateY(Math.PI / 2);
+        object.rotateX(Math.PI / 2);
+        scene.add(object);
+        createBox(15, 10, 15, 70, 5, 90, "zhitiebingzhe")
+    });
+
+
+    function createBox(x, y, z, a, b, c, name) {
+        //站台
+        var boxGeometry = new THREE.BoxBufferGeometry(x, y, z);
+        boxGeometry = boxGeometry.toNonIndexed(); // ensure each face has unique vertices
+        position = boxGeometry.attributes.position;
+        colors = [];
+        for (var i = 0, l = position.count; i < l; i++) {
+            color.setHSL(Math.random() * 0.3 + 0.5, 0.75, Math.random() * 0.25 + 0.75);
+            colors.push(color.r, color.g, color.b);
+        }
+        boxGeometry.addAttribute('color', new THREE.Float32BufferAttribute(colors, 3));
+
+        for (var i = 0; i < 1; i++) {
+            var boxMaterial = new THREE.MeshPhongMaterial({
+                specular: 0xffffff,
+                flatShading: true,
+                vertexColors: THREE.VertexColors
+            });
+            boxMaterial.color.setHSL(Math.random() * 0.2 + 0.5, 0.75, Math.random() * 0.25 + 0.75);
+            var box = new THREE.Mesh(boxGeometry, boxMaterial);
+
+            box.position.set(a, b, c);
+            box.castShadow = true;
+            box.name = name;
+            box.type = "statue";
+            scene.add(box);
+        }
+    }
+
+
+    const fpc = new FirstPersonControls(camera);
+    fpc.connect();
+    // 向场景添加用于控制相机的Object
+    scene.add(fpc.yawObject);
+
+    window.addEventListener("resize", onWindowResize);
+
+    function onWindowResize() {
+        camera.aspect = window.innerWidth / window.innerHeight;
+        camera.updateProjectionMatrix();
+        renderer.setSize(window.innerWidth, window.innerHeight);
+    }
+
+    let clock = new THREE.Clock();
+
+    function render() {
+        fpc.update(clock.getDelta());
+        socket.emit('player', {position: fpc.yawObject.position, rotation: fpc.yawObject.rotation});
+        requestAnimationFrame(render);
+
+
+        if (mixers.length > 0) {
+
+            for (var i = 0; i < mixers.length; i++) {
+
+                mixers[i].update(clock.getDelta());
+            }
+        }
+        renderer.render(scene, camera);
+    }
+
+
+    const usrUUID = username;
+    socket.emit('login', usrUUID);
+
+    var vm = new Vue({
+        el: "#app",
+        data: {
+            onlineUsers_array: [],
+            message_array: [],
+            message: ''
+        },
+        methods: {
+            dealMessage: function () {
+                socket.emit('input', this.message);
+                this.message = '';
+            }
+        }
+    });
+
+    socket.on('output', data => {
+        vm.message_array.push(data.uuid + " : " + data.msg);
+    });
+
+    socket.on('loadUsr', connected_usr => {
+        vm.onlineUsers_array = connected_usr;
+    });
+
+    let playerMap = new Map();
+
+    socket.on('player', data => {
+        if (playerMap.has(data.socketid)) {
+            let model = playerMap.get(data.socketid);
+            model.position.set(data.position.x, data.position.y, data.position.z);
+            model.rotation.set(data.rotation._x, data.rotation._y + Math.PI / 2, data.rotation._z);
+        } else {
+
+            // // model
+            var loader2 = new THREE.FBXLoader();
+            loader2.load('model/fbx/player/Lux2_idle.fbx', function (object) {
+                if (!playerMap.has(data.socketid)) {
+
+                    object.scale.multiplyScalar(.1);    // 缩放模型大小
+                    object.rotateY(Math.PI / 2);
+
+                    object.mixer = new THREE.AnimationMixer(object);
+                    mixers.push(object.mixer);
+                    var action = object.mixer.clipAction(object.animations[0]);
+                    action.play();
+
+                    object.type = "player";
+                    console.log(object.type);
+
+                    scene.add(object);
+                    playerMap.set(data.socketid, object);
+                }
+            });
+
+
+        }
+    });
+
+
+    socket.on('offline', data => {
+        if (playerMap.has(data.socketid)) {
+            scene.remove(playerMap.get(data.socketid));
+            playerMap.delete(data.socketid)
+        }
+    });
+
+    render();
+</script>
+</html>

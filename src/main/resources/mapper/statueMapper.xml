@@ -9,6 +9,8 @@
         <result column="author" property="author" jdbcType="VARCHAR"/>
         <result column="authorintro" property="authorintro" jdbcType="VARCHAR"/>
         <result column="likenumber" property="likenumber" jdbcType="INTEGER"/>
+        <result column="authorimgsrc" property="authorimgsrc" jdbcType="VARCHAR"/>
+        <result column="statueimgsrc" property="statueimgsrc" jdbcType="VARCHAR"/>
     </resultMap>
 
 
@@ -18,7 +20,9 @@
   introduction,
   author,
   authorintro,
-  likenumber
+  likenumber,
+  authorimgsrc,
+  statueimgsrc
     </sql>
 
 

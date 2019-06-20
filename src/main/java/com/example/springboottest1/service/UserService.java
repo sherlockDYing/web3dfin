@@ -20,7 +20,7 @@ public class UserService {
     }
 
     public int adduser(String username,
-                       int gender,
+                       String gender,
                        String location,
                        String introduction,
                        String workplace,

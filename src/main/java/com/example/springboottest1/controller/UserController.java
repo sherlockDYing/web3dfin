@@ -48,14 +48,13 @@ public class UserController {
     //    @UserLoginToken
     @RequestMapping(value = {"/personalPage"})
     public String personalinfo(HttpSession httpSession, Model model) {
-        //根据token获取username userid；
+        //根据session获取username userid；
         String username = (String) httpSession.getAttribute("username");
         if (username == null) {
             return "noLoginAlert";
         } else {
             List<Comment> comments = commentService.findCommentByUsername(username);
             User user = userService.findUserByUsername(username);
-
             model.addAttribute("comments", comments);
             model.addAttribute("user", user);
             return "personalPage";
@@ -87,17 +86,17 @@ public class UserController {
     public void addUser(@RequestParam("username") String username,
                         @RequestParam("password") String password,
                         @RequestParam("role") int role,
+                        @RequestParam("gender") String gender,
+                        @RequestParam("location") String location,
+                        @RequestParam("workplace") String workplace,
+                        @RequestParam("introduction") String introduction,
                         HttpServletResponse response) throws IOException {
 
         response.setContentType("text/html;charset=gb2312");
         PrintWriter out = response.getWriter();
-        int gender = -1;
 
-        String location = "";
 
-        String introduction = "";
 
-        String workplace = "";
 
 
         if (userService.adduser(username, gender, location, introduction, workplace, role, password) == 0) {
@@ -106,5 +105,12 @@ public class UserController {
         } else {
             out.print("<script language=\"javascript\">alert('Success！');window.location.href='/user/loginPage'</script>");
         }
+    }
+
+    @ResponseBody
+    @RequestMapping(value = {"/quit"})
+    public Object quit (HttpSession httpSession){
+        httpSession.removeAttribute("username");
+        return new SuccessResponse("退出成功");
     }
 }

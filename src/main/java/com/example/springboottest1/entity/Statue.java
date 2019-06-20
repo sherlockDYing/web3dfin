@@ -7,7 +7,8 @@ public class Statue {
     private String author;
     private String authorintro;
     private int likenumber;
-
+    private String authorimgsrc;
+    private String statueimgsrc;
 
     public String getStatuename() {
         return statuename;
@@ -47,5 +48,21 @@ public class Statue {
 
     public void setLikenumber(int likenumber) {
         this.likenumber = likenumber;
+    }
+
+    public String getAuthorimgsrc() {
+        return authorimgsrc;
+    }
+
+    public void setAuthorimgsrc(String authorimgsrc) {
+        this.authorimgsrc = authorimgsrc;
+    }
+
+    public String getStatueimgsrc() {
+        return statueimgsrc;
+    }
+
+    public void setStatueimgsrc(String statueimgsrc) {
+        this.statueimgsrc = statueimgsrc;
     }
 }
