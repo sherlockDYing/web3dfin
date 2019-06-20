@@ -16,11 +16,19 @@ public interface userMapper {
     User userlogin(@Param("username") String username, @Param("password") String password);
 
     //新用户注册，向user表中添加数据
-    int adduser1(@Param("username") String username, @Param("password") String password, @Param("role") int role);
+    int adduser(@Param("username") String username,
+                @Param("gender") int gender,
+                @Param("location") String location,
+                @Param("introduction") String introduction,
+                @Param("workplace") String workplace,
+                @Param("role") int role,
+                @Param("password") String password);
 
+    //通过id查找
+    User findUserByID(@Param("id") String id);
 
-//    List<Map<String,Object>> queryAllUser();
+    //通过name查找
+    User findUserByUsername(@Param("username") String username);
 
-     User findUserByID(@Param("id") String id);
-
+    Boolean updateUser(User user);
 }

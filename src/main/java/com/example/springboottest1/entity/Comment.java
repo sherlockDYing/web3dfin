@@ -4,23 +4,21 @@ public class Comment {
 
     private String id;
 
+    private String posttime;
+
+    private String statuename;
+
     private String username;
 
-    private String content;
+    private String introduction;
 
-    private String statue;
 
-    private int likeNum;
+    public String getId() {
+        return id;
+    }
 
-    private String createDate;
-
-    public Comment(String id,String username,String content,String statue,int likeNum,String createDate){
-        this.id= id;
-        this.username=username;
-        this.content=content;
-        this.statue=statue;
-        this.likeNum=likeNum;
-        this.createDate=createDate;
+    public void setId(String id) {
+        this.id = id;
     }
 
 
@@ -32,43 +30,27 @@ public class Comment {
         this.username = username;
     }
 
-    public String getContent() {
-        return content;
+    public String getIntroduction() {
+        return introduction;
     }
 
-    public void setContent(String content) {
-        this.content = content;
+    public void setIntroduction(String introduction) {
+        this.introduction = introduction;
     }
 
-    public int getLikeNum() {
-        return likeNum;
+    public String getStatuename() {
+        return statuename;
     }
 
-    public void setLikeNum(int likeNum) {
-        this.likeNum = likeNum;
+    public void setStatuename(String statuename) {
+        this.statuename = statuename;
     }
 
-    public String getCreateDate() {
-        return createDate;
+    public String getPosttime() {
+        return posttime;
     }
 
-    public void setCreateDate(String createDate) {
-        this.createDate = createDate;
-    }
-
-    public String getStatue() {
-        return statue;
-    }
-
-    public void setStatue(String statue) {
-        this.statue = statue;
-    }
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
+    public void setPosttime(String posttime) {
+        this.posttime = posttime;
     }
 }

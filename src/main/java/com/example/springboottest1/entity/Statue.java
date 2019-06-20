@@ -2,33 +2,50 @@ package com.example.springboottest1.entity;
 
 public class Statue {
 
-    private String sid;
+    private String statuename;
+    private String introduction;
+    private String author;
+    private String authorintro;
+    private int likenumber;
 
-    private String descrip;
 
-    private String auther;
-
-    public String getId() {
-        return sid;
+    public String getStatuename() {
+        return statuename;
     }
 
-    public void setId(String sid) {
-        this.sid = sid;
+    public void setStatuename(String statuename) {
+        this.statuename = statuename;
     }
 
-    public String getDescrip() {
-        return descrip;
+    public String getIntroduction() {
+        return introduction;
     }
 
-    public void setDescrip(String descrip) {
-        this.descrip = descrip;
+    public void setIntroduction(String introduction) {
+        this.introduction = introduction;
     }
 
-    public String getAuther() {
-        return auther;
+    public String getAuthor() {
+        return author;
     }
 
-    public void setAuther(String auther) {
-        this.auther = auther;
+    public void setAuthor(String author) {
+        this.author = author;
+    }
+
+    public String getAuthorintro() {
+        return authorintro;
+    }
+
+    public void setAuthorintro(String authorintro) {
+        this.authorintro = authorintro;
+    }
+
+    public int getLikenumber() {
+        return likenumber;
+    }
+
+    public void setLikenumber(int likenumber) {
+        this.likenumber = likenumber;
     }
 }

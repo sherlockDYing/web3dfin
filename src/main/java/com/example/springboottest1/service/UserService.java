@@ -6,8 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-import java.util.Map;
 
 @Service
 @Component
@@ -16,15 +14,37 @@ public class UserService {
     @Autowired
     private userMapper usermapper;
 
-    public User userLogin(String username, String password){
-        return usermapper.userlogin(username,password);
+
+    public User userLogin(String username, String password) {
+        return usermapper.userlogin(username, password);
     }
 
-    public int adduser(String username,String password,int role){ return usermapper.adduser1(username,password,role); }
+    public int adduser(String username,
+                       int gender,
+                       String location,
+                       String introduction,
+                       String workplace,
+                       int role,
+                       String password) {
+        return usermapper.adduser(
+                username,
+                gender,
+                location,
+                introduction,
+                workplace,
+                role,
+                password);
+    }
 
-   // public List<Map<String,Object>> queryAllUser(){
-//        return usermapper.queryAllUser();
-//    }
-//
-    public User findUserByID(String id){return  usermapper.findUserByID(id);}
+    public User findUserByID(String id) {
+        return usermapper.findUserByID(id);
+    }
+
+    public User findUserByUsername(String username) {
+        return usermapper.findUserByUsername(username);
+    }
+
+    public Boolean updateUser(User user) {
+        return usermapper.updateUser(user);
+    }
 }

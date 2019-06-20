@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.springboottest1.mapper.commentMapper">
+
+    <resultMap id="BaseResultMap" type="com.example.springboottest1.entity.Comment">
+        <id column="id" property="id" jdbcType="VARCHAR"/>
+        <result column="posttime" property="posttime" jdbcType="VARCHAR"/>
+        <result column="statuename" property="statuename" jdbcType="VARCHAR"/>
+        <result column="username" property="username" jdbcType="VARCHAR"/>
+        <result column="introduction" property="introduction" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+  id,
+  posttime,
+  statuename,
+  username,
+  introduction
+    </sql>
+
+    <!--插入，新评论发布-->
+    <insert id="addcomment" parameterType="Comment" keyProperty="id" useGeneratedKeys="true">
+        INSERT INTO Comment (
+    posttime,
+  statuename,
+  username,
+  introduction
+        ) VALUES (#{posttime},#{statuename},#{username},#{introduction})
+    </insert>
+
+
+    <!-- 按用户查找评论 -->
+    <select id="findCommentByUsername" parameterType="java.lang.String" resultType="com.example.springboottest1.entity.Comment">
+        select * from Comment where username = #{username}
+    </select>
+
+
+    <!-- 按雕塑名查找评论 -->
+    <select id="findCommentByStatuename" parameterType="java.lang.String" resultType="com.example.springboottest1.entity.Comment">
+        select * from Comment where statuename = #{statuename}
+    </select>
+
+
+</mapper>

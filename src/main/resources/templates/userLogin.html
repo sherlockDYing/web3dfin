@@ -17,7 +17,8 @@
     <![endif]-->
 </head>
 <body>
-<form action="/user/userLogin" method="post" onsubmit="return CheckPost(this);">
+<!--<form action="/user/userLogin" method="post" onsubmit="return CheckPost(this);">-->
+<form action="" onsubmit="false" id="form1">
     <div style="position: relative;">
         <div style=" width: 100%; height: 100%; position: absolute;">
             <canvas id="canvas"></canvas>
@@ -43,7 +44,8 @@
                             </label>
                         </div>
                         <div class="form-group col-md-offset-9">
-                            <button type="submit" class="btn btn-success pull-right" name="login">登录</button>
+                            <!--<button  class="btn btn-success pull-right" name="login" >登录</button>-->
+                            <input class="btn btn-success pull-right" value="登录" onclick="ajax_submit()" type="button" />
                         </div>
                     </div>
                 </div>
@@ -57,15 +59,44 @@
     </div>
 </form>
 <script>
-    function CheckPost(form) {
-        for (i = 0; i < form.length; i++) {
-            //form属性的elements的首字母e要小写
-            if (form.elements[i].value == "") {
-                alert(form.elements[i].placeholder + "不能为空");
-                return false;
-            }
+    // /**
+    //  * @return {boolean}
+    //  */
+    // function CheckPost(form) {
+    //     for (var i = 0; i < form.length; i++) {
+    //         //form属性的elements的首字母e要小写
+    //         if (form.elements[i].value === ""&& form.elements[i].type === "text") {
+    //             alert(form.elements[i].name + "不能为空");
+    //             return false;
+    //         }
+    //
+    //     }
+    //
+    //     return true;
+    // }
+    
+    function ajax_submit() {
+        if($('#username').val()===''||$('#password').val()==='') {
+            alert("请填完整");
+            return false;
         }
+            $.ajax({
+                type: "post",  //数据提交方式（post/get）
+                url: "/user/userLogin",  //提交到的url
+                data: $('#form1').serialize(),//提交的数据
+                dataType: "json",//返回的数据类型格式
+                success: function(msg){
+                    if (msg.code === 200){
+                        alert("登录成功");
+                        window.location.href = "/user/personalPage";
+                        return false;
+                    }else {
+                        alert("登录失败");
+                    }
+                }
+            });
     }
+
 </script>
 </body>
 <script src="/js/background.js"></script>

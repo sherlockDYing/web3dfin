@@ -1,48 +1,54 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <title>Personal Information</title>
     <script src="/js/jquery-3.4.1.min.js"></script>
     <!-- 最新版本的 Bootstrap 核心 CSS 文件 -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
     <!-- 可选的 Bootstrap 主题文件（一般不用引入） -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap-theme.min.css"
+          integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
 
     <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js"
+            integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+            crossorigin="anonymous"></script>
 
     <link rel="stylesheet" href="/css/animate.min.css">
     <style>
-        .left-nav{
+        .left-nav {
             background-color: #ccc;
             height: 800px;
         }
-        #left-content{
+
+        #left-content {
             margin-top: 20px;
         }
-        .list-group{
+
+        .list-group {
             padding-left: 0;
         }
 
-        #btngroup button{
+        #btngroup button {
             width: 100%;
         }
 
-        table{
-            table-layout:fixed;
+        table {
+            table-layout: fixed;
             width: 900px;
-            word-wrap:break-word;
-        /*    超长数字单词换行*/
-        }
-        /*溢出显示省略号*/
-        .comment-abstract{
-            overflow: hidden;
-            text-overflow:ellipsis;
-            white-space:nowrap;
+            word-wrap: break-word;
+            /*    超长数字单词换行*/
         }
 
+        /*溢出显示省略号*/
+        .comment-abstract {
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
 
 
     </style>
@@ -58,10 +64,10 @@
                     <img src="/img/avatar2.png" alt="用户头像" class="img-responsive img-rounded">
                 </div>
                 <div class="list-group">
-                    <a  class="list-group-item" id="nav-pInfo">个人信息</a >
-                    <a  class="list-group-item" id="nav-myComment">我的评论</a>
-                    <a  class="list-group-item" id="nav-myCollection">我的收藏</a>
-<!--                    展示个人收藏的他人的评论，或者雕塑缩略图-->
+                    <a class="list-group-item" id="nav-pInfo">个人信息</a>
+                    <a class="list-group-item" id="nav-myComment">我的评论</a>
+                    <a class="list-group-item" id="nav-myCollection">我的收藏</a>
+                    <!--                    展示个人收藏的他人的评论，或者雕塑缩略图-->
                 </div>
                 <div class="list-group">
                     <a class="list-group-item" id="nav-set">设置</a>
@@ -78,61 +84,70 @@
         <div class="col-md-10">
 
 
-
-                <!-- 个人信息 -->
+            <!-- 个人信息 -->
             <section class="about-section wow fadeInUp">
-<div class="container">
-    <h2 class="h1 about-h ">个人信息</h2>
-        <div class="row">
-        <div class="col-md-6 " >
-            <h3 class="h1 username">东东</h3>
+                <div class="container">
+                    <h2 class="h1 about-h ">个人信息</h2>
+                    <div class="row">
+                        <div  class="col-md-6 ">
+                            <h3 th:text="${user.username}" class="h1 username"></h3>
 
-            <table class="table" >
-               <tr><td><strong>性别</strong></td><td>男</td></tr>
-                <tr><td><strong>所在地</strong></td><td>上海市杨浦区</td></tr>
-                <tr><td><strong>工作单位/学校</strong></td><td>复旦大学</td></tr>
-                <tr><td><strong>个人简介</strong></td>
-                    <td>
-                        <div></div>
-                    </td>
-                </tr>
-            </table>
+                            <table class="table">
+                                <tr>
+                                    <td><strong>性别</strong></td>
+                                    <td th:text="${user.gender}">男</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>所在地</strong></td>
+                                    <td th:text="${user.location}"></td>
+                                </tr>
+                                <tr>
+                                    <td><strong>工作单位/学校</strong></td>
+                                    <td th:text="${user.workplace}" ></td>
+                                </tr>
+                                <tr>
+                                    <td><strong>个人简介</strong></td>
+                                    <td>
+                                        <div th:text="${user.introduction}"></div>
+                                    </td>
+                                </tr>
+                            </table>
 
 
-            </div>
+                        </div>
 
-        </div>
-    </div>
-</section>
-                <!-- 评论 -->
+                    </div>
+                </div>
+            </section>
+            <!-- 评论 -->
             <section class="comment-section wow fadeInUp">
                 <div class="container">
                     <h2 class="h1">我的评论</h2>
                     <div class="row">
-                        <div class="col-md-6 " >
-                            <table class="table table-over " id="accordion">
-                                <thead><tr>
+                        <div class="col-md-6 ">
+                            <table  class="table table-over " id="accordion">
+                                <thead>
+                                <tr>
                                     <th>时间</th>
                                     <th>对象</th>
                                     <th>概要</th>
-                                </tr></thead>
-                                <tr  class="bg-info" th:each="c:${comments}">
-                                                <th th:text="${c.createDate}" class="comment-time"></th>
-                                                <th class="comment-obj">某雕塑</th>
-                                                <th class="comment-abstract">
-                                                    <a data-toggle="collapse" data-parent="#accordion" href="#comment-0">
-
-                                                    </a></th>
-
                                 </tr>
-                                <tr class="bg-warning panel-collapse collapse" id="comment-0">
-                                    <td colspan="3"><div>
-
-                                    </div>
-                                    </td>
+                                </thead>
+                                <div  th:each="c:${comments}">
+                                <tr   class="bg-info">
+                                    <th th:text="${c.posttime}" class="comment-time"></th>
+                                    <th th:text="${c.statuename}" textclass="comment-obj">某雕塑</th>
+                                    <th  class="comment-abstract" th:text="${c.introduction}">
+                                        <!--<a data-toggle="collapse" data-parent="#accordion"   onclick=></a>-->
+                                    </th>
                                 </tr>
-
-
+                                <tr class="bg-warning panel-collapse collapse">
+                                    <th colspan="3">
+                                        <div th:text="${c.introduction}">
+                                        </div>
+                                    </th>
+                                </tr>
+                                </div>
                             </table>
 
                         </div>
@@ -140,10 +155,10 @@
                     </div>
                 </div>
             </section>
-                <!-- 设置-->
+            <!-- 设置-->
             <section class="set-section wow fadeInUp">
                 <h2 class="h1">设置</h2>
-                <form class="form-horizontal text-left">
+                <form class="form-horizontal text-left" onsubmit="return CheckPost(this);">
                     <div class="form-group">
                         <label for="username" class="col-md-1 control-label ">用户名</label>
                         <div class="col-md-8">
@@ -157,12 +172,20 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label  class="col-md-1 control-label">形象</label>
+                        <label class="col-md-1 control-label">形象</label>
                         <div class="col-md-8">
-                        <label for="set-role-0"> <input id="set-role-0" type="radio" name="radio-role" value="role-0"> <img src="/img/avatar2.png" alt="角色0"> </label>
-                            <label for="set-role-1"> <input id="set-role-1" type="radio" name="radio-role" value="role-1"> <img src="/img/avatar2.png" alt="角色1"> </label>
-                            <label for="set-role-2"> <input id="set-role-2" type="radio" name="radio-role" value="role-2"> <img src="/img/avatar2.png" alt="角色2"> </label>
-                            <label for="set-role-3"> <input id="set-role-3" type="radio" name="radio-role" value="role-3"> <img src="/img/avatar2.png" alt="角色3"> </label>
+                            <label for="set-role-0"> <input id="set-role-0" type="radio" name="radio-role"
+                                                            value="role-0" checked> <img src="/img/avatar2.png" alt="角色0" >
+                            </label>
+                            <label for="set-role-1"> <input id="set-role-1" type="radio" name="radio-role"
+                                                            value="role-1"> <img src="/img/avatar2.png" alt="角色1">
+                            </label>
+                            <label for="set-role-2"> <input id="set-role-2" type="radio" name="radio-role"
+                                                            value="role-2"> <img src="/img/avatar2.png" alt="角色2">
+                            </label>
+                            <label for="set-role-3"> <input id="set-role-3" type="radio" name="radio-role"
+                                                            value="role-3"> <img src="/img/avatar2.png" alt="角色3">
+                            </label>
                         </div>
                     </div>
                     <div class="form-group">
@@ -180,7 +203,8 @@
                     <div class="form-group">
                         <label for="set-selfIntro" class="col-md-1 control-label text-left">个人简介</label>
                         <div class="col-md-8">
-                            <textarea id="set-selfIntro" class="form-control" placeholder="Your simple self-introduction etc"></textarea>
+                            <textarea id="set-selfIntro" class="form-control"
+                                      placeholder="Your simple self-introduction etc"></textarea>
                         </div>
                     </div>
                     <div class="form-group">
@@ -192,32 +216,37 @@
                 </form>
             </section>
 
-                <!-- 收藏 -->
-            <section class = 'collect-section wow fadeInUp'>
+            <!-- 收藏 -->
+            <section class='collect-section wow fadeInUp'>
                 <div class="container">
-                <h2 class="h1">收藏</h2>
+                    <h2 class="h1">收藏</h2>
                     <div class="row">
-                        <div class="col-md-6" >
+                        <div class="col-md-6">
                             <h2 class="h3">精彩评论</h2>
-                            <table class="table table-hover table-condensed table-striped" id="accordion-collect" >
-                                <thead><tr>
+                            <table class="table table-hover table-condensed table-striped" id="accordion-collect">
+                                <thead>
+                                <tr>
                                     <th>时间</th>
                                     <th>对象</th>
                                     <th>创建者</th>
                                     <th>概要</th>
-                                </tr></thead>
+                                </tr>
+                                </thead>
                                 <tr class="bg-info">
                                     <th class="comment-time">2019-05-05 21:23</th>
                                     <th class="comment-obj">某雕塑</th>
                                     <th class="comment-who">西西</th>
-                                    <th class="comment-abstract"  style="overflow: hidden;text-overflow:ellipsis;white-space:nowrap" >
-                                        <a data-toggle="collapse" data-parent="#accordion-collect" href="#collect-comment-0" >
+                                    <th class="comment-abstract"
+                                        style="overflow: hidden;text-overflow:ellipsis;white-space:nowrap">
+                                        <a data-toggle="collapse" data-parent="#accordion-collect"
+                                           href="#collect-comment-0">
                                         </a></th>
 
                                 </tr>
-                                <tr class="bg-warning panel-collapse collapse"  id="collect-comment-0">
-                                    <td colspan="4"><div>
-                                    </div>
+                                <tr class="bg-warning panel-collapse collapse" id="collect-comment-0">
+                                    <td colspan="4">
+                                        <div>
+                                        </div>
                                     </td>
                                 </tr>
 
@@ -226,15 +255,17 @@
                                     <th class="comment-obj">某雕塑</th>
                                     <th class="comment-who">南南</th>
                                     <th class="comment-abstract">
-                                        <a data-toggle="collapse" data-parent="#accordion-collect" href="#collect-comment-1" style="overflow: hidden ;text-overflow:ellipsis">
+                                        <a data-toggle="collapse" data-parent="#accordion-collect"
+                                           href="#collect-comment-1" style="overflow: hidden ;text-overflow:ellipsis">
                                             Nihil anim keffiyeh helvetica
                                         </a></th>
 
                                 </tr>
                                 <tr class="bg-warning panel-collapse collapse" id="collect-comment-1">
-                                    <td colspan="4"><div>
+                                    <td colspan="4">
+                                        <div>
 
-                                    </div>
+                                        </div>
                                     </td>
                                 </tr>
 
@@ -245,19 +276,15 @@
                 </div>
             </section>
 
-                <!-- 帮助-->
-            <section class = "help-section wow fadeInUp">
+            <!-- 帮助-->
+            <section class="help-section wow fadeInUp">
                 <div class="container">
-                <h2 class="h1">帮助</h2>
+                    <h2 class="h1">帮助</h2>
                 </div>
             </section>
 
 
-
-
         </div>
-
-
     </div>
 </div>
 <script src="/js/wow.min.js"></script>
@@ -267,30 +294,30 @@
     $('.collect-section').hide();
     $('.help-section').hide();
     new WOW().init();
-
-    var zero = $("#nav-pInfo"),one = $("#nav-myComment"),two = $("#nav-myCollection"),three = $('#nav-set'),four = $('#nav-help');
-    zero.on('click',function () {
+    var zero = $("#nav-pInfo"), one = $("#nav-myComment"), two = $("#nav-myCollection"), three = $('#nav-set'),
+        four = $('#nav-help');
+    zero.on('click', function () {
         $(".about-section").fadeIn();
         $(".comment-section").fadeOut();
         $(".set-section").fadeOut();
         $(".help-section").fadeOut();
         $(".collect-section").fadeOut();
     });
-    one.on('click',function () {
+    one.on('click', function () {
         $(".comment-section").fadeIn();
         $(".about-section").fadeOut();
         $(".set-section").fadeOut();
         $(".help-section").fadeOut();
         $(".collect-section").fadeOut();
     });
-    two.on('click',function () {
+    two.on('click', function () {
         $(".collect-section").fadeIn();
         $(".about-section").fadeOut();
         $(".comment-section").fadeOut();
         $(".set-section").fadeOut();
         $(".help-section").fadeOut();
     });
-    three.on('click',function () {
+    three.on('click', function () {
         $(".set-section").fadeIn();
         $(".about-section").fadeOut();
         $(".comment-section").fadeOut();
@@ -298,7 +325,7 @@
         $(".help-section").fadeOut();
     });
 
-    four.on('click',function () {
+    four.on('click', function () {
         $(".help-section").fadeIn();
         $(".about-section").fadeOut();
         $(".comment-section").fadeOut();
@@ -307,6 +334,23 @@
     })
 </script>
 
+<script>
+    function CheckPost(form) {
+        for (i = 0; i < form.length; i++) {
+            //form属性的elements的首字母e要小写
+            if (form.elements[i].type == "text" && form.elements[i].value == "") {
+                alert(form.elements[i].placeholder + "不能为空");
+                return false;
+            }
+        }
+
+        var gender = document.getElementById("set-org");
+        if (gender.value !== "男" && gender.value !== "女") {
+            alert("你只能在性别栏中输入男或女！");
+            return false;
+        }
+    }
+</script>
 </body>
 <script src="/js/background.js"></script>
 </html>
