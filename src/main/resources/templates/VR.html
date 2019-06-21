@@ -62,7 +62,12 @@
             text-align: center;
             cursor: pointer;
         }
-
+        table {
+            table-layout: fixed;
+            width: 900px;
+            word-wrap: break-word;
+            /*    超长数字单词换行*/
+        }
         .comment-abstract {
             overflow: hidden;
             text-overflow: ellipsis;
@@ -113,7 +118,7 @@
             </div>
             <div class="modal-body">
                 <ul class="nav nav-tabs">
-                    <li class="active"><a href="#detail" data-toggle="tab">Detail</a></li>
+                    <li id="liDetail" class="active"><a href="#detail" data-toggle="tab">Detail</a></li>
                     <li><a href="#author" data-toggle="tab">Author</a></li>
                     <li><a href="#comment" data-toggle="tab" onclick="ajax_findCommentByStatuename()">Comment</a></li>
                     <li><a href="#saysth" data-toggle="tab">Say something!</a></li>
@@ -158,19 +163,27 @@
                     <div class="tab-pane fade" id="comment">
                         <div id="q-review-container" class="panel-body thumbnail">
                             <div id="comments-list">
-                                <table class="table table-condensed table-striped table-hover table-bordered">
-                                    <tbody th:fragment="comment">
-                                    <tr th:each="c:${commentsByStatue}">
-                                        <td class="col-md-1" style="width: 5%"><span>1</span></td>
-                                        <td class="col-md-4 col-lg-2">
-                                            <div th:text="${c.username}">tester1</div>
-                                            <div th:text="${c.posttime}">2019-05-08 18:52:27</div>
-                                        </td>
-                                        <td class="review-content">
-                                            <div th:text="${c.introduction}">I'm comment demo1. I like this status.
-                                            </div>
-                                        </td>
+                                <table class="table table-condensed table-striped table-hover table-bordered"  th:fragment="comment">
+                                    <thead>
+                                    <tr>
+                                        <th>评论者</th>
+                                        <th>评论时间</th>
+                                        <th>评论概要（点击查看详情）</th>
                                     </tr>
+                                    </thead>
+                                    <tbody>
+                                    <div th:each="c:${commentsByStatue}">
+                                    <tr >
+                                        <td><div th:text="${c.username}">tester1</div></td>
+                                        <td><div th:text="${c.posttime}">2019-05-08 18:52:27</div></td>
+                                        <td class="comment-abstract"  style="overflow: hidden;text-overflow: ellipsis;white-space: nowrap;" th:text="${c.introduction}"  th:id="${c.id}" onclick="commenthandler('scommentdetail'+id)"></td>
+                                    </tr>
+                                    <tr style="display: none" class="bg-warning" th:id="'scommentdetail'+${c.id}">
+                                        <th colspan="3">
+                                            <div th:text="${c.introduction}"></div>
+                                        </th>
+                                    </tr>
+                                    </div>
                                     </tbody>
                                 </table>
                             </div>
@@ -198,7 +211,12 @@
                                     <button type="button" id="submit-comment" class="btn btn-primary"
                                             onclick="ajax_comment()">Submit
                                     </button>
-                                    <button type="button" class="btn btn-default">Clear</button>
+                                    <button type="button" class="btn btn-default" onclick="handleClear()">Clear</button>
+                          <script>
+                              function handleClear() {
+                                  document.getElementById("comment_textarea").value="";
+                              }
+                          </script>
                                 </div>
                             </div>
                         </div>
@@ -268,7 +286,7 @@
 
                     <div class="tab-pane fade" id="personnalComment">
                         <div class="panel-body thumbnail">
-                            <table class="table table-over " id="accordion">
+                            <table class="table table-over " id="accordion" style="table-layout: fixed;width:90%;word-wrap: break-word;" th:fragment="personnalComment">
                                 <thead>
                                 <tr>
                                     <th>发表时间</th>
@@ -276,32 +294,19 @@
                                     <th>评论概要</th>
                                 </tr>
                                 </thead>
-                                <tbody th:fragment="personnalComment">
-                                <tr class="bg-info" th:each="pcomment:${commentsByUser}">
+                                <tbody >
+                                <div th:each="pcomment:${commentsByUser}">
+                                <tr class="bg-info" >
                                     <th class="comment-time" th:text="${pcomment.posttime}">2019-05-05 21:23</th>
                                     <th class="comment-obj" th:text="${pcomment.statuename}">某雕塑</th>
-                                    <th class="comment-abstract" th:text="${pcomment.introduction}"
-                                        th:id="${pcomment.id}" onclick="handler(id)">
-                                        hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh
+                                    <th class="comment-abstract" style="overflow: hidden;text-overflow: ellipsis;white-space: nowrap;" th:text="${pcomment.introduction}" th:id="${pcomment.id}" onclick="commenthandler('pcommentdetail'+id)"></th>
+                                </tr>
+                                <tr style="display: none" class="bg-warning" th:id="'pcommentdetail'+${pcomment.id}">
+                                    <th colspan="3">
+                                        <div th:text="${pcomment.introduction}"></div>
                                     </th>
                                 </tr>
-                                <!--<script>-->
-                                <!--function handler(id) {-->
-                                <!--var abst = document.getElementById(id);-->
-                                <!--var comment = document.getElementById("detail" + id);-->
-                                <!--if (comment.style.display === "")-->
-                                <!--comment.style.display = "none";-->
-                                <!--else if (comment.style.display === "none")-->
-                                <!--comment.style.display = "";-->
-
-                                <!--}-->
-                                <!--</script>-->
-                                <!--<tr style="display: none" class="bg-warning" th:id="'detail'+${pcomment.id}">-->
-                                <!--<th colspan="3">-->
-                                <!--<div th:text="${pcomment.introduction}">-->
-                                <!--</div>-->
-                                <!--</th>-->
-                                <!--</tr>-->
+                                </div>
                                 </tbody>
                             </table>
                         </div>
@@ -390,29 +395,6 @@
         </div>
     </div>
 </div>
-<script>
-    function toPersonalInfo() {
-        window.location.href = "/user/personalPage";
-    }
-
-    function quit() {
-        $.ajax({
-            type: "get",  //数据提交方式（post/get）
-            url: "/user/quit",  //提交到的url
-            dataType: "json",//返回的数据类型格式
-            success: function (msg) {
-                if (msg.code === 200) {
-                    alert("退出成功");
-                    window.location.href = "/user/loginPage";
-                    return false;
-                } else {
-                    alert("退出失败");
-                }
-            }
-        });
-    }
-</script>
-
 </body>
 <script th:inline="javascript">
     var username = [[${user.username}]];
@@ -467,12 +449,9 @@
 
     renderer = new THREE.WebGLRenderer({antialias: true});
     renderer.setSize(SCREEN_WIDTH, SCREEN_HEIGHT);
+    renderer.gammaOutput=true;
     document.body.appendChild(renderer.domElement);
 
-
-    // soft white light
-    const slight = new THREE.AmbientLight(0xaaaaaa);
-    scene.add(slight);
 
     //创建灯光
     var light = new THREE.HemisphereLight(0xeeeeff, 0x777788, 0.75);
@@ -672,14 +651,14 @@
             model.position.set(data.position.x, 2, data.position.z);
             model.rotation.set(data.rotation._x, data.rotation._y + Math.PI, data.rotation._z);
         } else {
-
+            socket.emit('player', {position: fpc.yawObject.position, rotation: fpc.yawObject.rotation, role: role});
             var url;
             if (data.role === 1) {
                 url = 'model/gltf/role1.glb';
             } else if (data.role === 2) {
                 url = 'model/gltf/role2.glb';
             } else if (data.role === 3) {
-                url = 'model/gltf/role3.glb';
+                url = 'model/gltf/role4.glb';
             }
 
             // // model
@@ -719,5 +698,6 @@
 </script>
 
 <!-- ajax request -->
+<script src="/js/abstractHandler.js"></script>
 <script src="/js/ajaxforVR.js"></script>
 </html>

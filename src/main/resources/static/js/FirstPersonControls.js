@@ -58,15 +58,15 @@ class FirstPersonControls {
     onKeyDown(event) {
         switch (event.keyCode) {
             case KEY_W:
-                if (!checkState && blocker.style.display !== "blcok")
+                if (!checkState && blocker.style.display !== 'blcok')
                     this.moveForward = true;
                 break;
             case KEY_A:
-                if (!checkState  && blocker.style.display !== "blcok")
+                if (!checkState  && blocker.style.display !== 'blcok')
                     this.moveLeft = true;
                 break;
             case KEY_S:
-                if (!checkState  && blocker.style.display !== "blcok")
+                if (!checkState  && blocker.style.display !== 'blcok')
                     this.moveBackward = true;
                 break;
             case KEY_D:
@@ -74,7 +74,9 @@ class FirstPersonControls {
                     this.moveRight = true;
                 break;
             case KEY_C:
+                ajax_findCommentByStatuename();
                 if (hinter1.style.display === 'block') {
+                    document.getElementById("liDetail").class="active";
                     checkState = true;
                     this.isLocked = false;
                     document.exitPointerLock();
@@ -115,6 +117,7 @@ class FirstPersonControls {
                 break;
 
             case KEY_F:
+                ajax_findCommentByUsername();
                 if (hinter2.style.display === 'block') {
                     this.isLocked = false;
                     document.exitPointerLock();

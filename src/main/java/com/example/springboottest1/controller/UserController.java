@@ -104,6 +104,11 @@ public class UserController {
         response.setContentType("text/html;charset=gb2312");
         PrintWriter out = response.getWriter();
         String userimgsrc = "/img/player/player" + role + ".png";
+        if(userService.findUserByUsername(username)!=null)
+        {
+            out.print("<script language=\"javascript\">alert('username already existed!');window.location.href='/user/loginPage'</script>");
+            return;
+        }
 
         if (userService.adduser(username, gender, location, introduction, workplace, role, password, userimgsrc) == 0) {
             out.print("<script language=\"javascript\">alert('Fail to register!');window.location.href='/user/registerPage'</script>");

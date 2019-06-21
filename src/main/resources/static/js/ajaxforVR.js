@@ -14,9 +14,9 @@ function ajax_comment() {
             "statuename":statuename},//提交的数据
         dataType: "json",//返回的数据类型格式
         success: function(msg){
-            console.log("back");
             if (msg.code === 200){
                 alert("评论成功");
+                document.getElementById("comment_textarea").value="";
                 return false;
             }else {
                 alert("评论失败");
@@ -26,14 +26,11 @@ function ajax_comment() {
 
 }
 function ajax_findCommentByStatuename() {
-    let statuename = document.getElementById('statuename').innerText;
     $.ajax({
         type: "post",  //数据提交方式（post/get）
         url: "/findCommentByStatuename",  //提交到的url
-        data: {"statuename":statuename},//提交的数据
-        // dataType: "json",//返回的数据类型格式
+        data: {"statuename":tempStatueName},//提交的数据
         success: function(data){
-            // console.log("datahhhhhhhhh");
             $('#comment').html(data);
         },
         error:function (data) {
@@ -53,6 +50,27 @@ function  ajax_findCommentByUsername() {
         },
         error:function (data) {
             console.log("eeeer personal comment");
+        }
+    });
+}
+
+function toPersonalInfo() {
+    window.location.href = "/user/personalPage";
+}
+
+function quit() {
+    $.ajax({
+        type: "get",  //数据提交方式（post/get）
+        url: "/user/quit",  //提交到的url
+        dataType: "json",//返回的数据类型格式
+        success: function (msg) {
+            if (msg.code === 200) {
+                alert("退出成功");
+                window.location.href = "/user/loginPage";
+                return false;
+            } else {
+                alert("退出失败");
+            }
         }
     });
 }
