@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:v-on="http://www.w3.org/1999/xhtml" xmlns:th="http://www.springframework.org/schema/jdbc">
+<html xmlns:v-on="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
     <meta charset=utf-8>
     <title>在线VR雕塑展</title>
@@ -109,7 +109,7 @@
                 <ul class="nav nav-tabs">
                     <li class="active"><a href="#detail" data-toggle="tab">Detail</a></li>
                     <li><a href="#author" data-toggle="tab">Author</a></li>
-                    <li><a href="#comment" data-toggle="tab">Comment</a></li>
+                    <li><a href="#comment" data-toggle="tab" onclick="ajax_findCommentByStatuename()">Comment</a></li>
                     <li><a href="#saysth" data-toggle="tab">Say something!</a></li>
                 </ul>
                 <div id="myTabContent" class="tab-content">
@@ -117,15 +117,18 @@
                     <!-- statue detail -->
                     <div class="tab-pane fade in active" id="detail">
                         <div class="thumbnail">
-                            <img  id="statueimg" src="/img/statueDEMO.jpg" alt="..." class="img-thumbnail">
+                            <img id="statueimg" src="/img/statueDEMO.jpg" alt="..." class="img-thumbnail">
                             <div class="caption">
                                 <h3 id="statuename">Statue name</h3>
-                                <p id ="introduction">details details details details details details details details details details
+                                <p id="introduction">details details details details details details details details
+                                    details details
                                     details details
                                     details details details details details details details details details details
                                     details details
                                     details details details details </p>
-                                <p class="text-right text-muted"><span class="glyphicon glyphicon-thumbs-up"  aria-hidden="true"></span><span id = "likenumber">3 </span> people like it</p>
+                                <p class="text-right text-muted"><span class="glyphicon glyphicon-thumbs-up"
+                                                                       aria-hidden="true"></span><span
+                                        id="likenumber">3 </span> people like it</p>
                             </div>
                         </div>
                     </div>
@@ -135,7 +138,8 @@
                             <img id=authorimg src="/img/authorDEMO.jpg" alt="..." class="img-thumbnail">
                             <div class="caption">
                                 <h3 id="authorname">Author name</h3>
-                                <p id="authorintro">details details details details details details details details details details
+                                <p id="authorintro">details details details details details details details details
+                                    details details
                                     details details
                                     details details details details details details details details details details
                                     details details
@@ -144,40 +148,21 @@
                         </div>
                     </div>
 
-
-                    <div class="tab-pane fade" id="comment">
+<!--评论列表-->
+                    <div class="tab-pane fade" id="comment" th:fragment="comment">
                         <div id="q-review-container" class="panel-body thumbnail">
                             <div id="comments-list">
                                 <table class="table table-condensed table-striped table-hover table-bordered">
                                     <tbody>
-                                    <tr>
+                                    <tr th:each="c:${commentsByStatue}">
                                         <td class="col-md-1" style="width: 5%"><span>1</span></td>
                                         <td class="col-md-4 col-lg-2">
-                                            <div>tester1</div>
-                                            <div>2019-05-08 18:52:27</div>
+                                            <div th:text="${c.username}">tester1</div>
+                                            <div th:text="${c.posttime}">2019-05-08 18:52:27</div>
                                         </td>
                                         <td class="review-content">
-                                            <div>I'm comment demo1. I like this status.</div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="col-md-1" style="width: 5%"><span>2</span></td>
-                                        <td class="col-md-4 col-lg-2">
-                                            <div>tester2</div>
-                                            <div>2019-05-08 19:28:55</div>
-                                        </td>
-                                        <td class="review-content">
-                                            <div>I'm comment demo2. I like this status</div>
-                                        </td>
-                                    </tr>
-                                    <tr data-index="2" data-id="2155">
-                                        <td class="col-md-1" style="width: 5%"><span>3</span></td>
-                                        <td class="col-md-4 col-lg-2">
-                                            <div>tester3</div>
-                                            <div>2019-05-08 19:34:06</div>
-                                        </td>
-                                        <td class="review-content">
-                                            <div>I'm comment demo3. I like this status</div>
+                                            <div th:text="${c.introduction}">I'm comment demo1. I like this status.
+                                            </div>
                                         </td>
                                     </tr>
                                     </tbody>
@@ -195,7 +180,8 @@
                                     <div>
                                         <label class="col-md-3 control-label"> Your comment</label>
                                         <div class="col-md-9">
-                                            <textarea name="content" rows="6" class="form-control"></textarea>
+                                            <textarea name="content" rows="6" class="form-control"
+                                                      id="comment_textarea"></textarea>
                                         </div>
                                     </div>
                                 </form>
@@ -203,7 +189,9 @@
 
                             <div class="ui-dialog-buttonpane ui-widget-content ui-helper-clearfix">
                                 <div class="ui-dialog-buttonset">
-                                    <button type="button" id="submit-comment" class="btn btn-primary">Submit</button>
+                                    <button type="button" id="submit-comment" class="btn btn-primary"
+                                            onclick="ajax_comment()">Submit
+                                    </button>
                                     <button type="button" class="btn btn-default">Clear</button>
                                 </div>
                             </div>
@@ -461,8 +449,6 @@
 <script th:inline="javascript">
     var username = [[${user.username}]];
     const socket = io('localhost:8080');
-
-
     var camera, scene, renderer, controls, mixer;
     var horizontalRaycaster, downRaycaster;
     var rotation = new THREE.Vector3(); //当前的相机朝向
@@ -753,4 +739,7 @@
 
     render();
 </script>
+
+<!-- ajax request -->
+<script src="/js/ajaxforVR.js"></script>
 </html>

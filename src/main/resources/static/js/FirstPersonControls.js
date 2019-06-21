@@ -86,8 +86,6 @@ class FirstPersonControls {
                         dataType: "json",//返回的数据类型格式
                         success: function(msg){
                             if (msg.code === 200){
-                                console.log("200");
-
                                 var statuename = document.getElementById("statuename");
                                 statuename.innerText = msg.data.statuename;
                                 var introduction = document.getElementById("introduction");
@@ -106,12 +104,17 @@ class FirstPersonControls {
                                     keyboard: false,
                                     backdrop: 'static'
                                 });
+                             //   findCommentByStatuename()
                                 return true;
                             }else {
                                 alert("雕塑失败");
                             }
                         }
                     });
+
+
+
+
 
                     // $('#myModal').modal({
                     //     keyboard: false,
