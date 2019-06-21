@@ -12,6 +12,7 @@ CREATE TABLE IF NOT EXISTS user (
   introduction VARCHAR(800),
   location VARCHAR(100),
   workplace VARCHAR(100),
+  userimgsrc VARCHAR (100),
   PRIMARY KEY (id)
 );
 

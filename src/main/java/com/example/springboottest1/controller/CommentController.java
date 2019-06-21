@@ -49,5 +49,13 @@ public class CommentController {
             return "VR::comment";
     }
 
+    @RequestMapping(value = "/findCommentByUsername")
+    public String findCommentByUsername(@Param("username") String username,Model model){
+        List<Comment> commentsByUser = commentService.findCommentByUsername(username);
+        System.out.println("username comment"+commentsByUser.size());
+        model.addAttribute("commentsByUser",commentsByUser);
+        return "VR::personnalComment";
+    }
+
 
 }

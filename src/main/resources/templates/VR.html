@@ -62,6 +62,12 @@
             text-align: center;
             cursor: pointer;
         }
+
+        .comment-abstract {
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
     </style>
 
 </head>
@@ -148,12 +154,12 @@
                         </div>
                     </div>
 
-<!--评论列表-->
-                    <div class="tab-pane fade" id="comment" th:fragment="comment">
+                    <!--评论列表-->
+                    <div class="tab-pane fade" id="comment">
                         <div id="q-review-container" class="panel-body thumbnail">
                             <div id="comments-list">
                                 <table class="table table-condensed table-striped table-hover table-bordered">
-                                    <tbody>
+                                    <tbody th:fragment="comment">
                                     <tr th:each="c:${commentsByStatue}">
                                         <td class="col-md-1" style="width: 5%"><span>1</span></td>
                                         <td class="col-md-4 col-lg-2">
@@ -224,8 +230,8 @@
 
                 <ul class="nav nav-tabs">
                     <li class="active"><a href="#info" data-toggle="tab">Information</a></li>
-                    <li><a href="#personnalComment" data-toggle="tab">Comment</a></li>
-                    <li><a href="#collection" data-toggle="tab">Collection</a></li>
+                    <li><a href="#personnalComment" data-toggle="tab" onclick="ajax_findCommentByUsername()">Comment</a>
+                    </li>
                 </ul>
 
 
@@ -234,21 +240,23 @@
                         <div class="thumbnail">
                             <div>
                                 <img src="/img/demo001.jpeg" alt="用户头像"
-                                     class="img-responsive img-circle col-md-6  col-md-offset-3">
+                                     class="img-responsive img-circle col-md-6  col-md-offset-3"
+                                     id="other_userimg">
                             </div>
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="list-group">
                                         <div class="list-group-item"><p><strong>昵称</strong><span
-                                                class="name pull-right">东东</span></p></div>
+                                                class="name pull-right" id="other_username">东东</span></p></div>
                                         <div class="list-group-item"><p><strong>性别</strong><span
-                                                class="gender pull-right">男</span></p></div>
+                                                class="gender pull-right" id="other_gender">男</span></p></div>
                                         <div class="list-group-item"><p><strong>所在地</strong><span
-                                                class="location pull-right">上海市杨浦区</span></p></div>
+                                                class="location pull-right" id="other_location">上海市杨浦区</span></p></div>
                                         <div class="list-group-item"><p><strong>工作单位/学校</strong><span
-                                                class="org pull-right">复旦大学</span></p></div>
+                                                class="org pull-right" id="other_workplace">复旦大学</span></p></div>
                                         <div class="list-group-item"><p><strong>个人简介</strong><span
-                                                class="intro pull-right">hellohellohellohellohello</span></p></div>
+                                                class="intro pull-right" id="other_introduction">hellohellohellohellohello</span>
+                                        </p></div>
                                     </div>
 
                                 </div>
@@ -268,72 +276,32 @@
                                     <th>评论概要</th>
                                 </tr>
                                 </thead>
-                                <tbody>
-                                <tr class="bg-info">
-                                    <th class="comment-time">2019-05-05 21:23</th>
-                                    <th class="comment-obj">某雕塑</th>
-                                    <th class="comment-abstract">
-                                        <a data-toggle="collapse" data-parent="#accordion" href="#comment-0">
-                                            Nihil anim keffiyeh helvetica<span>...</span>
-                                        </a></th>
+                                <tbody th:fragment="personnalComment">
+                                <tr class="bg-info" th:each="pcomment:${commentsByUser}">
+                                    <th class="comment-time" th:text="${pcomment.posttime}">2019-05-05 21:23</th>
+                                    <th class="comment-obj" th:text="${pcomment.statuename}">某雕塑</th>
+                                    <th class="comment-abstract" th:text="${pcomment.introduction}"
+                                        th:id="${pcomment.id}" onclick="handler(id)">
+                                        hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh
+                                    </th>
                                 </tr>
-                                <tr class="bg-warning panel-collapse collapse" id="comment-0">
-                                    <td colspan="3">
-                                        <div>
-                                            Nihil anim keffiyeh helvetica, craft beer labore wes anderson
-                                            cred nesciunt sapiente ea proident. Ad vegan excepteur butcher
-                                            vice lomo.
-                                        </div>
-                                    </td>
-                                </tr>
+                                <!--<script>-->
+                                    <!--function handler(id) {-->
+                                        <!--var abst = document.getElementById(id);-->
+                                        <!--var comment = document.getElementById("detail" + id);-->
+                                        <!--if (comment.style.display === "")-->
+                                            <!--comment.style.display = "none";-->
+                                        <!--else if (comment.style.display === "none")-->
+                                            <!--comment.style.display = "";-->
 
-                                <tr class="bg-info">
-                                    <th class="comment-time">2019-05-05 21:23</th>
-                                    <th class="comment-obj">某雕塑</th>
-                                    <th class="comment-abstract">
-                                        <a data-toggle="collapse" data-parent="#accordion" href="#comment-1">
-                                            Nihil anim keffiyeh helvetica<span>...</span>
-                                        </a></th>
-                                </tr>
-                                <tr class="bg-warning panel-collapse collapse" id="comment-1">
-                                    <td colspan="3">
-                                        <div>
-                                            Nihil anim keffiyeh helvetica, craft beer labore wes anderson
-                                            cred nesciunt sapiente ea proident. Ad vegan excepteur butcher
-                                            vice lomo.
-                                        </div>
-                                    </td>
-                                </tr>
-
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-
-
-                    <div class="tab-pane fade" id="collection">
-                        <div class="panel-body thumbnail">
-                            <table class="table table-over " id="accordion-collect">
-                                <thead>
-                                <tr>
-                                    <th>收藏时间</th>
-                                    <th>对象</th>
-                                    <th>作者</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                <tr class="bg-info">
-                                    <th class="comment-time">2019-05-05 21:23</th>
-                                    <th class="comment-obj">某雕塑</th>
-                                    <th class="comment-who">佚名</th>
-                                </tr>
-
-
-                                <tr class="bg-info">
-                                    <th class="comment-time">2019-05-05 21:23</th>
-                                    <th class="comment-obj">某雕塑</th>
-                                    <th class="comment-who">米开朗琪罗</th>
-                                </tr>
+                                    <!--}-->
+                                <!--</script>-->
+                                <!--<tr style="display: none" class="bg-warning" th:id="'detail'+${pcomment.id}">-->
+                                    <!--<th colspan="3">-->
+                                        <!--<div th:text="${pcomment.introduction}">-->
+                                        <!--</div>-->
+                                    <!--</th>-->
+                                <!--</tr>-->
                                 </tbody>
                             </table>
                         </div>
@@ -448,13 +416,15 @@
 </body>
 <script th:inline="javascript">
     var username = [[${user.username}]];
+
+
     const socket = io('localhost:8080');
     var camera, scene, renderer, controls, mixer;
     var horizontalRaycaster, downRaycaster;
     var rotation = new THREE.Vector3(); //当前的相机朝向
     var vertex = new THREE.Vector3();
     var color = new THREE.Color();
-    var tempStatueName;
+    var tempStatueName, tempPlayerName;
 
     var moveForward = false;
     var moveBackward = false;
@@ -606,6 +576,23 @@
         createBox(15, 10, 15, 70, 5, 90, "zhitiebingzhe")
     });
 
+    // // model
+    var loader3 = new THREE.GLTFLoader();
+    loader3.load('model/gltf/Lux2_idle.glb', function (gltf) {
+//Loading in and positioning model
+        var object = gltf.scene;
+        object.scale.multiplyScalar(.1);    // 缩放模型大小
+        object.position.set(0, 2, 0);
+        object.rotateY(Math.PI);
+        object.children[0].children[2].type = "player";
+        object.children[0].children[2].name = "tester1";
+        console.log(object);
+        var mixer = new THREE.AnimationMixer(gltf.scene);
+        mixer.clipAction(gltf.animations[0]).play();
+        mixers.push(mixer);
+
+        scene.add(object);
+    });
 
     function createBox(x, y, z, a, b, c, name) {
         //站台
@@ -656,13 +643,10 @@
         fpc.update(clock.getDelta());
         socket.emit('player', {position: fpc.yawObject.position, rotation: fpc.yawObject.rotation});
         requestAnimationFrame(render);
-
-
+        var delta = clock.getDelta();
         if (mixers.length > 0) {
-
             for (var i = 0; i < mixers.length; i++) {
-
-                mixers[i].update(clock.getDelta());
+                mixers[i].update(delta);
             }
         }
         renderer.render(scene, camera);
@@ -700,25 +684,23 @@
     socket.on('player', data => {
         if (playerMap.has(data.socketid)) {
             let model = playerMap.get(data.socketid);
-            model.position.set(data.position.x, data.position.y, data.position.z);
-            model.rotation.set(data.rotation._x, data.rotation._y + Math.PI / 2, data.rotation._z);
+            model.position.set(data.position.x, 2, data.position.z);
+            model.rotation.set(data.rotation._x, data.rotation._y + Math.PI, data.rotation._z);
         } else {
-
             // // model
-            var loader2 = new THREE.FBXLoader();
-            loader2.load('model/fbx/player/Lux2_idle.fbx', function (object) {
+            var loader2 = new THREE.GLTFLoader();
+            loader2.load('model/gltf/Lux2_idle.glb', function (gltf) {
                 if (!playerMap.has(data.socketid)) {
-
+//Loading in and positioning model
+                    var object = gltf.scene;
                     object.scale.multiplyScalar(.1);    // 缩放模型大小
-                    object.rotateY(Math.PI / 2);
+                    object.position.set(0, 2, 0);
+                    object.rotateY(Math.PI);
+                    object.children[0].children[2].type = "player";
 
-                    object.mixer = new THREE.AnimationMixer(object);
-                    mixers.push(object.mixer);
-                    var action = object.mixer.clipAction(object.animations[0]);
-                    action.play();
-
-                    object.type = "player";
-                    console.log(object.type);
+                    var mixer = new THREE.AnimationMixer(gltf.scene);
+                    mixer.clipAction(gltf.animations[0]).play();
+                    mixers.push(mixer);
 
                     scene.add(object);
                     playerMap.set(data.socketid, object);

@@ -18,6 +18,8 @@ public class User {
 
     private String password;
 
+    private String userimgsrc;
+
     public String getId() {
         return id;
     }
@@ -81,5 +83,13 @@ public class User {
 
     public void setRole(int role) {
         this.role = role;
+    }
+
+    public String getUserimgsrc() {
+        return userimgsrc;
+    }
+
+    public void setUserimgsrc(String userimgsrc) {
+        this.userimgsrc = userimgsrc;
     }
 }

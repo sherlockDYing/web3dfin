@@ -22,7 +22,8 @@ public interface userMapper {
                 @Param("introduction") String introduction,
                 @Param("workplace") String workplace,
                 @Param("role") int role,
-                @Param("password") String password);
+                @Param("password") String password,
+                @Param("userimgsrc") String userimgsrc);
 
     //通过id查找
     User findUserByID(@Param("id") String id);

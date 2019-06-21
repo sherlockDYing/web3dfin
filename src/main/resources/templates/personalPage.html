@@ -62,7 +62,7 @@
         <div class="left-nav col-md-2 wow fadeInLeft">
             <div class="text-center" id="left-content">
                 <div class="list-group">
-                    <img src="/img/avatar2.png" alt="用户头像" class="img-responsive img-rounded">
+                    <img th:src= "${user.userimgsrc}" alt="用户头像" class="img-responsive img-rounded">
                 </div>
                 <div class="list-group">
                     <a class="list-group-item" id="nav-pInfo">个人信息</a>
@@ -157,7 +157,6 @@
                                     <tr style="display: none" class="bg-warning" th:id="'detail'+${c.id}">
                                         <th colspan="3">
                                             <div th:text="${c.introduction}">
-                                            </div>
                                             </div>
                                         </th>
                                     </tr>

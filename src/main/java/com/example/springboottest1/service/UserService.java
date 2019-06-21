@@ -25,7 +25,8 @@ public class UserService {
                        String introduction,
                        String workplace,
                        int role,
-                       String password) {
+                       String password,
+                       String userimgsrc) {
         return usermapper.adduser(
                 username,
                 gender,
@@ -33,7 +34,8 @@ public class UserService {
                 introduction,
                 workplace,
                 role,
-                password);
+                password,
+                userimgsrc);
     }
 
     public User findUserByID(String id) {

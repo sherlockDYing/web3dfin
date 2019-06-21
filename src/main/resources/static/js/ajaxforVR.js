@@ -41,3 +41,18 @@ function ajax_findCommentByStatuename() {
         }
     });
 }
+
+function  ajax_findCommentByUsername() {
+    $.ajax({
+        type:"post",
+        url:"/findCommentByUsername",
+        data:{"username":tempPlayerName},
+        success:function (data) {
+            console.log("username success");
+            $('#personnalComment').html(data);
+        },
+        error:function (data) {
+            console.log("eeeer personal comment");
+        }
+    });
+}

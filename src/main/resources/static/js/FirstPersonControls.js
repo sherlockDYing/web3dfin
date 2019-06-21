@@ -58,19 +58,19 @@ class FirstPersonControls {
     onKeyDown(event) {
         switch (event.keyCode) {
             case KEY_W:
-                if (!checkState)
+                if (!checkState && blocker.style.display !== "blcok")
                     this.moveForward = true;
                 break;
             case KEY_A:
-                if (!checkState)
+                if (!checkState  && blocker.style.display !== "blcok")
                     this.moveLeft = true;
                 break;
             case KEY_S:
-                if (!checkState)
+                if (!checkState  && blocker.style.display !== "blcok")
                     this.moveBackward = true;
                 break;
             case KEY_D:
-                if (!checkState)
+                if (!checkState  && blocker.style.display !== "blcok")
                     this.moveRight = true;
                 break;
             case KEY_C:
@@ -78,48 +78,38 @@ class FirstPersonControls {
                     checkState = true;
                     this.isLocked = false;
                     document.exitPointerLock();
-                    console.log(tempStatueName);
                     $.ajax({
                         type: "post",  //数据提交方式（post/get）
                         url: "/statue/statueByName",  //提交到的url
-                        data:{"statuename":tempStatueName},
+                        data: {"statuename": tempStatueName},
                         dataType: "json",//返回的数据类型格式
-                        success: function(msg){
-                            if (msg.code === 200){
+                        success: function (msg) {
+                            if (msg.code === 200) {
                                 var statuename = document.getElementById("statuename");
                                 statuename.innerText = msg.data.statuename;
                                 var introduction = document.getElementById("introduction");
                                 introduction.innerText = msg.data.introduction;
                                 var likenumber = document.getElementById("likenumber");
-                                likenumber.innerText= msg.data.likenumber;
-                                var statueimg=document.getElementById("statueimg");
-                                statueimg.setAttribute("src",msg.data.statueimgsrc);
-                                var authorimg=document.getElementById("authorimg");
-                                authorimg.setAttribute("src",msg.data.authorimgsrc);
-                                var author=document.getElementById("authorname");
-                                author.innerText=msg.data.author;
-                                var authorintro=document.getElementById("authorintro");
-                                authorintro.innerText=msg.data.authorintro;
+                                likenumber.innerText = msg.data.likenumber;
+                                var statueimg = document.getElementById("statueimg");
+                                statueimg.setAttribute("src", msg.data.statueimgsrc);
+                                var authorimg = document.getElementById("authorimg");
+                                authorimg.setAttribute("src", msg.data.authorimgsrc);
+                                var author = document.getElementById("authorname");
+                                author.innerText = msg.data.author;
+                                var authorintro = document.getElementById("authorintro");
+                                authorintro.innerText = msg.data.authorintro;
                                 $('#myModal').modal({
                                     keyboard: false,
                                     backdrop: 'static'
                                 });
-                             //   findCommentByStatuename()
                                 return true;
-                            }else {
+                            } else {
                                 alert("雕塑失败");
                             }
                         }
                     });
 
-
-
-
-
-                    // $('#myModal').modal({
-                    //     keyboard: false,
-                    //     backdrop: 'static'
-                    // });
                     this.domElement.removeEventListener('click', this.domElement.requestPointerLock);
                 }
                 break;
@@ -128,10 +118,38 @@ class FirstPersonControls {
                 if (hinter2.style.display === 'block') {
                     this.isLocked = false;
                     document.exitPointerLock();
-                    $('#myModal2').modal({
-                        keyboard: false,
-                        backdrop: 'static'
+                    $.ajax({
+                        type: "post",  //数据提交方式（post/get）
+                        url: "/user/userByName",  //提交到的url
+                        data: {"username": tempPlayerName},
+                        dataType: "json",//返回的数据类型格式
+                        success: function (msg) {
+                            if (msg.code === 200) {
+                                var other_username = document.getElementById("other_username");
+                                var other_gender = document.getElementById("other_gender");
+                                var other_location = document.getElementById("other_location");
+                                var other_workplace = document.getElementById("other_workplace");
+                                var other_introduction = document.getElementById("other_introduction");
+                                let other_userimg = document.getElementById("other_userimg");
+
+                                other_username.innerText = msg.data.username;
+                                other_gender.innerText = msg.data.gender;
+                                other_location.innerText = msg.data.location;
+                                other_workplace.innerText = msg.data.workplace;
+                                other_introduction.innerText = msg.data.introduction;
+                                other_userimg.src = msg.data.userimgsrc;
+
+                                $('#myModal2').modal({
+                                    keyboard: false,
+                                    backdrop: 'static'
+                                });
+                                return true;
+                            } else {
+                                alert("读取对方信息失败");
+                            }
+                        }
                     });
+
                     this.domElement.removeEventListener('click', this.domElement.requestPointerLock);
                 }
                 break;
@@ -264,7 +282,9 @@ class FirstPersonControls {
             if (horizontalIntersections[0].object.type === "statue") {
                 tempStatueName = horizontalIntersections[0].object.name;
                 hinter1.style.display = 'block';
-            } else if (horizontalIntersections[0].object.name === "Model") {
+            } else if (horizontalIntersections[0].object.type === "player") {
+                tempPlayerName = horizontalIntersections[0].object.name;
+
                 hinter2.style.display = 'block';
             }
         }

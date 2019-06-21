@@ -7,6 +7,7 @@ import com.example.springboottest1.response.SuccessResponse;
 import com.example.springboottest1.service.CommentService;
 import com.example.springboottest1.service.TokenService;
 import com.example.springboottest1.service.UserService;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -20,7 +21,6 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -61,6 +61,15 @@ public class UserController {
         }
     }
 
+    @ResponseBody
+    @RequestMapping(value = "/userByName")
+    public Object getStatueByName(@Param("username") String username) {
+        User user = userService.findUserByUsername(username);
+        if (user != null) {
+            return new SuccessResponse(user, "get user successfully");
+        } else return new ErrorResponse("fail to get user");
+    }
+
 
     @ResponseBody
     @RequestMapping(value = {"/userLogin"})
@@ -94,12 +103,9 @@ public class UserController {
 
         response.setContentType("text/html;charset=gb2312");
         PrintWriter out = response.getWriter();
+        String userimgsrc = "/img/player/player" + role + ".png";
 
-
-
-
-
-        if (userService.adduser(username, gender, location, introduction, workplace, role, password) == 0) {
+        if (userService.adduser(username, gender, location, introduction, workplace, role, password, userimgsrc) == 0) {
             out.print("<script language=\"javascript\">alert('Fail to register!');window.location.href='/user/registerPage'</script>");
             return;
         } else {
@@ -109,7 +115,7 @@ public class UserController {
 
     @ResponseBody
     @RequestMapping(value = {"/quit"})
-    public Object quit (HttpSession httpSession){
+    public Object quit(HttpSession httpSession) {
         httpSession.removeAttribute("username");
         return new SuccessResponse("退出成功");
     }
