@@ -286,21 +286,21 @@
                                     </th>
                                 </tr>
                                 <!--<script>-->
-                                    <!--function handler(id) {-->
-                                        <!--var abst = document.getElementById(id);-->
-                                        <!--var comment = document.getElementById("detail" + id);-->
-                                        <!--if (comment.style.display === "")-->
-                                            <!--comment.style.display = "none";-->
-                                        <!--else if (comment.style.display === "none")-->
-                                            <!--comment.style.display = "";-->
+                                <!--function handler(id) {-->
+                                <!--var abst = document.getElementById(id);-->
+                                <!--var comment = document.getElementById("detail" + id);-->
+                                <!--if (comment.style.display === "")-->
+                                <!--comment.style.display = "none";-->
+                                <!--else if (comment.style.display === "none")-->
+                                <!--comment.style.display = "";-->
 
-                                    <!--}-->
+                                <!--}-->
                                 <!--</script>-->
                                 <!--<tr style="display: none" class="bg-warning" th:id="'detail'+${pcomment.id}">-->
-                                    <!--<th colspan="3">-->
-                                        <!--<div th:text="${pcomment.introduction}">-->
-                                        <!--</div>-->
-                                    <!--</th>-->
+                                <!--<th colspan="3">-->
+                                <!--<div th:text="${pcomment.introduction}">-->
+                                <!--</div>-->
+                                <!--</th>-->
                                 <!--</tr>-->
                                 </tbody>
                             </table>
@@ -416,6 +416,7 @@
 </body>
 <script th:inline="javascript">
     var username = [[${user.username}]];
+    var role = [[${user.role}]];
 
 
     const socket = io('localhost:8080');
@@ -470,8 +471,8 @@
 
 
     // soft white light
-    // const slight = new THREE.AmbientLight(0xaaaaaa);
-    // scene.add(slight);
+    const slight = new THREE.AmbientLight(0xaaaaaa);
+    scene.add(slight);
 
     //创建灯光
     var light = new THREE.HemisphereLight(0xeeeeff, 0x777788, 0.75);
@@ -576,23 +577,6 @@
         createBox(15, 10, 15, 70, 5, 90, "zhitiebingzhe")
     });
 
-    // // model
-    var loader3 = new THREE.GLTFLoader();
-    loader3.load('model/gltf/Lux2_idle.glb', function (gltf) {
-//Loading in and positioning model
-        var object = gltf.scene;
-        object.scale.multiplyScalar(.1);    // 缩放模型大小
-        object.position.set(0, 2, 0);
-        object.rotateY(Math.PI);
-        object.children[0].children[2].type = "player";
-        object.children[0].children[2].name = "tester1";
-        console.log(object);
-        var mixer = new THREE.AnimationMixer(gltf.scene);
-        mixer.clipAction(gltf.animations[0]).play();
-        mixers.push(mixer);
-
-        scene.add(object);
-    });
 
     function createBox(x, y, z, a, b, c, name) {
         //站台
@@ -641,7 +625,7 @@
 
     function render() {
         fpc.update(clock.getDelta());
-        socket.emit('player', {position: fpc.yawObject.position, rotation: fpc.yawObject.rotation});
+        socket.emit('player', {position: fpc.yawObject.position, rotation: fpc.yawObject.rotation, role: role});
         requestAnimationFrame(render);
         var delta = clock.getDelta();
         if (mixers.length > 0) {
@@ -680,6 +664,7 @@
     });
 
     let playerMap = new Map();
+    var loader2 = new THREE.GLTFLoader();
 
     socket.on('player', data => {
         if (playerMap.has(data.socketid)) {
@@ -687,16 +672,27 @@
             model.position.set(data.position.x, 2, data.position.z);
             model.rotation.set(data.rotation._x, data.rotation._y + Math.PI, data.rotation._z);
         } else {
+
+            var url;
+            if (data.role === 1) {
+                url = 'model/gltf/role1.glb';
+            } else if (data.role === 2) {
+                url = 'model/gltf/role2.glb';
+            } else if (data.role === 3) {
+                url = 'model/gltf/role3.glb';
+            }
+
             // // model
-            var loader2 = new THREE.GLTFLoader();
-            loader2.load('model/gltf/Lux2_idle.glb', function (gltf) {
+            loader2.load(url, function (gltf) {
                 if (!playerMap.has(data.socketid)) {
 //Loading in and positioning model
                     var object = gltf.scene;
                     object.scale.multiplyScalar(.1);    // 缩放模型大小
                     object.position.set(0, 2, 0);
                     object.rotateY(Math.PI);
+
                     object.children[0].children[2].type = "player";
+                    object.children[0].children[2].name = data.socketid;
 
                     var mixer = new THREE.AnimationMixer(gltf.scene);
                     mixer.clipAction(gltf.animations[0]).play();

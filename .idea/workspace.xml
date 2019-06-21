@@ -2,38 +2,28 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cbc5b0a6-06a0-4b14-89b1-5ce542808e18" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/img/player/player1.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/img/player/player2.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/img/player/player3.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/model/gltf/Lux1_idle.glb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/model/gltf/Lux2_idle.glb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/model/gltf/Zoe_Dancing.glb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/model/gltf/role3.glb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/springboottest1/controller/CommentController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/springboottest1/controller/CommentController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/springboottest1/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/springboottest1/controller/UserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/springboottest1/entity/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/springboottest1/entity/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/springboottest1/mapper/userMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/springboottest1/mapper/userMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/springboottest1/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/springboottest1/service/UserService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/mapper/userMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mapper/userMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/img/texture/032cdddfda5be299c836dffc722917fc.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/img/texture/181aa44e9dcb04593a8fba6aae2fc765.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/img/texture/20090808_b464fbd1b8e3304d230dweojCSWwG2Av.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/img/texture/20130122_acb76469e5e4f9dace38RLBxY29q3JuS.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/img/texture/bc95aa217618ba2801e94939114bc9d4.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/img/texture/bfbf9fac9707e6652318c6aa7cbe2bb9.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/img/texture/e4ed5b2185014723e465635831ba75f0.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/img/texture/grasslight-big.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/img/texture/timg.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/js/FirstPersonControls.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/js/FirstPersonControls.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/js/GLTFLoader.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/js/GLTFLoader.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/js/ajaxforVR.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/js/ajaxforVR.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/static/model/gltf/Lux1_idle.glb" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/model/gltf/role1.glb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/static/model/gltf/Lux2_idle.glb" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/model/gltf/role2.glb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/static/model/gltf/Zoe_Dancing.glb" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/templates/VR.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/VR.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/templates/personalPage.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/personalPage.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/templates/userRegister.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/userRegister.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/web3d.sql" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/web3d.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/springboottest1/controller/UserController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/springboottest1/controller/UserController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/static/js/GLTFLoader.js" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/js/GLTFLoader.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/personalPage.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/personalPage.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/springboottest1/entity/User.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/springboottest1/entity/User.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/springboottest1/mapper/userMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/springboottest1/mapper/userMapper.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/springboottest1/service/UserService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/springboottest1/service/UserService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mapper/userMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mapper/userMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/static/img/texture/032cdddfda5be299c836dffc722917fc.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/static/img/texture/181aa44e9dcb04593a8fba6aae2fc765.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/static/img/texture/20090808_b464fbd1b8e3304d230dweojCSWwG2Av.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/static/img/texture/20130122_acb76469e5e4f9dace38RLBxY29q3JuS.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/static/img/texture/bc95aa217618ba2801e94939114bc9d4.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/static/img/texture/bfbf9fac9707e6652318c6aa7cbe2bb9.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/static/img/texture/e4ed5b2185014723e465635831ba75f0.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/static/img/texture/grasslight-big.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/static/img/texture/timg.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/userRegister.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/userRegister.html" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -184,14 +174,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
-      <file leaf-file-name="UserController.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/example/springboottest1/controller/UserController.java">
+      <file leaf-file-name="index.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../../server/index.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="342">
-              <caret line="109" column="19" selection-start-line="109" selection-start-column="19" selection-end-line="109" selection-end-column="19" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
+            <state relative-caret-position="361">
+              <caret line="31" column="31" selection-start-line="31" selection-start-column="31" selection-end-line="31" selection-end-column="31" />
             </state>
           </provider>
         </entry>
@@ -199,9 +186,10 @@
       <file leaf-file-name="VR.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/resources/templates/VR.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="254">
-              <caret line="243" column="54" selection-start-line="243" selection-start-column="41" selection-end-line="243" selection-end-column="54" />
+            <state relative-caret-position="669">
+              <caret line="692" selection-start-line="692" selection-end-line="692" />
               <folding>
+                <element signature="n#div#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#4;n#body#0;n#html#0;n#!!top" />
                 <element signature="n#div#5;n#body#0;n#html#0;n#!!top" />
               </folding>
             </state>
@@ -211,82 +199,21 @@
       <file leaf-file-name="userRegister.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/resources/templates/userRegister.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="41">
-              <caret line="81" column="47" selection-start-line="81" selection-start-column="47" selection-end-line="81" selection-end-column="47" />
+            <state relative-caret-position="212">
+              <caret line="87" column="85" selection-start-line="87" selection-start-column="85" selection-end-line="87" selection-end-column="85" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="FirstPersonControls.js" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/resources/static/js/FirstPersonControls.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="361">
-              <caret line="140" lean-forward="true" selection-start-line="140" selection-end-line="140" />
-              <folding>
-                <element signature="n#!!block;n#constructor#0;n#FirstPersonControls#0" />
-                <element signature="n#!!block;n#onPointerlockChange#0;n#FirstPersonControls#0" />
-                <element signature="n#!!block;n#onPointerlockError#0;n#FirstPersonControls#0" />
-                <element signature="n#!!block;n#onMouseMove#0;n#FirstPersonControls#0" />
-                <element signature="n#!!block;n#onKeyUp#0;n#FirstPersonControls#0" />
-                <element signature="n#!!block;n#connect#0;n#FirstPersonControls#0" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="statue" pinned="false" current-in-tab="false">
-        <entry file="das://238dd841-7b41-4fb0-8d8b-2f81f5afc68c/schema/web3d/table/statue">
-          <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-            <state>
-              <filtering enabled="true" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="personalPage.html" pinned="false" current-in-tab="false">
+      <file leaf-file-name="personalPage.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/resources/templates/personalPage.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="31">
-              <caret line="66" column="40" lean-forward="true" selection-start-line="66" selection-start-column="40" selection-end-line="66" selection-end-column="40" />
+            <state relative-caret-position="4745">
+              <caret line="330" column="9" lean-forward="true" selection-start-line="330" selection-start-column="9" selection-end-line="330" selection-end-column="9" />
               <folding>
+                <element signature="n#thead#0;n#table#0;n#div#0;n#div#0;n#div#0;n#section#1;n#div#1;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" />
                 <element signature="n#style#0;n#tr#1;n#div#0;n#table#0;n#div#0;n#div#0;n#div#0;n#section#1;n#div#1;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="user" pinned="false" current-in-tab="false">
-        <entry file="das://238dd841-7b41-4fb0-8d8b-2f81f5afc68c/schema/web3d/table/user">
-          <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-            <state>
-              <filtering enabled="true" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="userMapper.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/resources/mapper/userMapper.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="133">
-              <caret line="16" selection-start-line="16" selection-end-line="16" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="userMapper.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/example/springboottest1/mapper/userMapper.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="280">
-              <caret line="27" column="12" selection-start-line="27" selection-start-column="12" selection-end-line="27" selection-end-column="12" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="UserService.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/example/springboottest1/service/UserService.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="185">
-              <caret line="28" column="29" selection-start-line="28" selection-start-column="23" selection-end-line="28" selection-end-column="29" />
             </state>
           </provider>
         </entry>
@@ -306,8 +233,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>times</find>
-      <find>loader</find>
       <find>personalPage</find>
       <find>返回</find>
       <find>quit</find>
@@ -336,6 +261,8 @@
       <find>tempStatueName</find>
       <find>comment-abstract</find>
       <find>img</find>
+      <find>username</find>
+      <find>loader2</find>
     </findStrings>
     <replaceStrings>
       <replace />
@@ -375,7 +302,6 @@
         <option value="$PROJECT_DIR$/src/main/resources/templates/noLoginAlert.html" />
         <option value="$PROJECT_DIR$/src/main/resources/application.yml" />
         <option value="$PROJECT_DIR$/src/main/resources/static/js/VRControls.js" />
-        <option value="$PROJECT_DIR$/../../server/index.js" />
         <option value="$PROJECT_DIR$/src/main/java/com/example/springboottest1/controller/MainPageController.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/example/springboottest1/controller/StatueController.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/example/springboottest1/entity/Statue.java" />
@@ -397,10 +323,11 @@
         <option value="$PROJECT_DIR$/src/main/java/com/example/springboottest1/mapper/userMapper.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/example/springboottest1/service/UserService.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/example/springboottest1/controller/UserController.java" />
-        <option value="$PROJECT_DIR$/src/main/resources/templates/userRegister.html" />
-        <option value="$PROJECT_DIR$/src/main/resources/templates/VR.html" />
-        <option value="$PROJECT_DIR$/src/main/resources/templates/personalPage.html" />
         <option value="$PROJECT_DIR$/src/main/resources/static/js/FirstPersonControls.js" />
+        <option value="$PROJECT_DIR$/../../server/index.js" />
+        <option value="$PROJECT_DIR$/src/main/resources/templates/VR.html" />
+        <option value="$PROJECT_DIR$/src/main/resources/templates/userRegister.html" />
+        <option value="$PROJECT_DIR$/src/main/resources/templates/personalPage.html" />
       </list>
     </option>
   </component>
@@ -576,6 +503,15 @@
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="resources" type="462c0819:PsiDirectoryNode" />
               <item name="static" type="462c0819:PsiDirectoryNode" />
+              <item name="lib" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="springboottest1" type="b2602c69:ProjectViewProjectNode" />
+              <item name="adWeb_Lab03" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+              <item name="static" type="462c0819:PsiDirectoryNode" />
               <item name="model" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -628,11 +564,11 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\admin\Desktop\ver620\adWeb_Lab03\src\main\resources\static\model\gltf" />
+      <recent name="C:\Users\admin\Desktop\ver620\adWeb_Lab03\src\main\resources\static\model" />
       <recent name="C:\Users\admin\Desktop\ver620\adWeb_Lab03\src\main\resources\static\img" />
       <recent name="C:\Users\admin\Desktop\ver620\adWeb_Lab03\src\main\resources\static\js" />
-      <recent name="C:\Users\admin\Desktop\ver620\adWeb_Lab03\src\main\resources\static\model" />
       <recent name="C:\Users\admin\Desktop\ver620\adWeb_Lab03\src\main\resources\static\model\fbx" />
-      <recent name="C:\Users\admin\Desktop\ver620\adWeb_Lab03\src\main\resources\templates" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="com.example.springboottest1.sendEmail" />
@@ -1023,7 +959,7 @@
       <workItem from="1561020998040" duration="32001000" />
       <workItem from="1561057508298" duration="4617000" />
       <workItem from="1561101135443" duration="2387000" />
-      <workItem from="1561103830302" duration="8687000" />
+      <workItem from="1561103830302" duration="10659000" />
     </task>
     <task id="LOCAL-00001" summary="personal ok">
       <created>1561014333721</created>
@@ -1053,11 +989,18 @@
       <option name="project" value="LOCAL" />
       <updated>1561101457887</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="personal comment &amp; user img ok">
+      <created>1561112834627</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1561112834627</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="246658000" />
+    <option name="totallyTimeSpent" value="248630000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1295" height="695" extended-state="6" />
@@ -1079,10 +1022,9 @@
       <window_info anchor="right" id="Palette&#9;" order="7" />
       <window_info anchor="bottom" id="Java Enterprise" order="15" />
       <window_info anchor="bottom" id="Version Control" order="11" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.6899642" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.22401434" />
       <window_info anchor="bottom" id="Spring" order="7" />
       <window_info anchor="bottom" id="Terminal" order="10" weight="0.32616487" />
-      <window_info anchor="bottom" id="Database Console" order="17" weight="0.3297491" />
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.25222313" />
       <window_info anchor="bottom" id="Problems" order="13" weight="0.3298731" />
       <window_info anchor="right" id="Bean Validation" order="9" weight="0.3299356" />
@@ -1092,6 +1034,7 @@
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="bottom" content_ui="combo" id="Run Dashboard" order="14" weight="0.3298731" />
       <window_info id="Image Layers" order="3" />
+      <window_info anchor="bottom" id="Database Console" order="17" weight="0.3297491" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info id="Capture Tool" order="6" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -1149,7 +1092,8 @@
     <MESSAGE value="personal ok" />
     <MESSAGE value="statue touch ok" />
     <MESSAGE value="comment ok" />
-    <option name="LAST_COMMIT_MESSAGE" value="comment ok" />
+    <MESSAGE value="personal comment &amp; user img ok" />
+    <option name="LAST_COMMIT_MESSAGE" value="personal comment &amp; user img ok" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1222,13 +1166,6 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/static/js/VRControls.js" />
-    <entry file="file://$PROJECT_DIR$/../../server/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-114">
-          <caret line="26" column="20" lean-forward="true" selection-start-line="26" selection-start-column="20" selection-end-line="26" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/example/springboottest1/response/SuccessResponse.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="171">
@@ -1433,7 +1370,29 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/static/js/FirstPersonControls.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-2945">
+          <caret line="58" column="32" lean-forward="true" selection-start-line="58" selection-start-column="32" selection-end-line="58" selection-end-column="32" />
+          <folding>
+            <element signature="n#!!block;n#constructor#0;n#FirstPersonControls#0" />
+            <element signature="n#!!block;n#onPointerlockChange#0;n#FirstPersonControls#0" />
+            <element signature="n#!!block;n#onPointerlockError#0;n#FirstPersonControls#0" />
+            <element signature="n#!!block;n#onMouseMove#0;n#FirstPersonControls#0" />
+            <element signature="n#!!block;n#onKeyUp#0;n#FirstPersonControls#0" />
+            <element signature="n#!!block;n#connect#0;n#FirstPersonControls#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="das://238dd841-7b41-4fb0-8d8b-2f81f5afc68c/schema/web3d/table/statue">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://238dd841-7b41-4fb0-8d8b-2f81f5afc68c/schema/web3d/table/user">
       <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
         <state>
           <filtering enabled="true" />
@@ -1450,51 +1409,38 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/userRegister.html">
+    <entry file="file://$PROJECT_DIR$/../../server/index.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="41">
-          <caret line="81" column="47" selection-start-line="81" selection-start-column="47" selection-end-line="81" selection-end-column="47" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="das://238dd841-7b41-4fb0-8d8b-2f81f5afc68c/schema/web3d/table/user">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/personalPage.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="31">
-          <caret line="66" column="40" lean-forward="true" selection-start-line="66" selection-start-column="40" selection-end-line="66" selection-end-column="40" />
-          <folding>
-            <element signature="n#style#0;n#tr#1;n#div#0;n#table#0;n#div#0;n#div#0;n#div#0;n#section#1;n#div#1;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-          </folding>
+        <state relative-caret-position="361">
+          <caret line="31" column="31" selection-start-line="31" selection-start-column="31" selection-end-line="31" selection-end-column="31" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/templates/VR.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="254">
-          <caret line="243" column="54" selection-start-line="243" selection-start-column="41" selection-end-line="243" selection-end-column="54" />
+        <state relative-caret-position="669">
+          <caret line="692" selection-start-line="692" selection-end-line="692" />
           <folding>
+            <element signature="n#div#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#4;n#body#0;n#html#0;n#!!top" />
             <element signature="n#div#5;n#body#0;n#html#0;n#!!top" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/static/js/FirstPersonControls.js">
+    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/userRegister.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="361">
-          <caret line="140" lean-forward="true" selection-start-line="140" selection-end-line="140" />
+        <state relative-caret-position="212">
+          <caret line="87" column="85" selection-start-line="87" selection-start-column="85" selection-end-line="87" selection-end-column="85" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/personalPage.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="4745">
+          <caret line="330" column="9" lean-forward="true" selection-start-line="330" selection-start-column="9" selection-end-line="330" selection-end-column="9" />
           <folding>
-            <element signature="n#!!block;n#constructor#0;n#FirstPersonControls#0" />
-            <element signature="n#!!block;n#onPointerlockChange#0;n#FirstPersonControls#0" />
-            <element signature="n#!!block;n#onPointerlockError#0;n#FirstPersonControls#0" />
-            <element signature="n#!!block;n#onMouseMove#0;n#FirstPersonControls#0" />
-            <element signature="n#!!block;n#onKeyUp#0;n#FirstPersonControls#0" />
-            <element signature="n#!!block;n#connect#0;n#FirstPersonControls#0" />
+            <element signature="n#thead#0;n#table#0;n#div#0;n#div#0;n#div#0;n#section#1;n#div#1;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" />
+            <element signature="n#style#0;n#tr#1;n#div#0;n#table#0;n#div#0;n#div#0;n#div#0;n#section#1;n#div#1;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
           </folding>
         </state>
       </provider>

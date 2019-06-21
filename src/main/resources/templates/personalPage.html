@@ -143,24 +143,13 @@
                                             <!--<a data-toggle="collapse" data-parent="#accordion"   onclick=></a>-->
                                         </th>
                                     </tr>
-                                    <script>
-                                        function handler(id) {
-                                            var abst = document.getElementById(id);
-                                            var comment = document.getElementById("detail" + id);
-                                            if (comment.style.display === "")
-                                                comment.style.display = "none";
-                                            else if (comment.style.display === "none")
-                                                comment.style.display = "";
-
-                                        }
-                                    </script>
                                     <tr style="display: none" class="bg-warning" th:id="'detail'+${c.id}">
                                         <th colspan="3">
                                             <div th:text="${c.introduction}">
                                             </div>
                                         </th>
                                     </tr>
-
+                                </div>
                             </table>
                         </div>
                     </div>
@@ -328,6 +317,17 @@
  function enterVR() {
      window.location.href = "/mainPage";
  }
+</script>
+<script>
+    function handler(id) {
+        var abst = document.getElementById(id);
+        var comment = document.getElementById("detail" + id);
+        if (comment.style.display === "")
+            comment.style.display = "none";
+        else if (comment.style.display === "none")
+            comment.style.display = "";
+
+    }
 </script>
 </body>
 <script src="/js/background.js"></script>
