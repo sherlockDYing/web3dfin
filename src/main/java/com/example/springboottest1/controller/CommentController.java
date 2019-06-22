@@ -31,10 +31,7 @@ public class CommentController {
         } else {
             SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//设置日期格式
             String posttime = df.format(new Date());// new Date()为获取当前系统时间
-//            Comment comment = new Comment();
-//            comment.setIntroduction(newcomment);
-//            comment.setStatuename(statuename);
-//            comment.setUsername(username);
+
            if( commentService.addcomment(posttime,statuename,username, newcomment)>0){
                return new SuccessResponse("评论成功");
            }else return new ErrorResponse("评论失败");

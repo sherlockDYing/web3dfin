@@ -176,7 +176,9 @@
                                     <tr >
                                         <td><div th:text="${c.username}">tester1</div></td>
                                         <td><div th:text="${c.posttime}">2019-05-08 18:52:27</div></td>
-                                        <td class="comment-abstract"  style="overflow: hidden;text-overflow: ellipsis;white-space: nowrap;" th:text="${c.introduction}"  th:id="${c.id}" onclick="commenthandler('scommentdetail'+id)"></td>
+                                        <td class="comment-abstract"  style="overflow: hidden;text-overflow: ellipsis;white-space: nowrap;"
+                                            th:text="${c.introduction}"  th:id="${c.id}"
+                                            onclick="commenthandler('scommentdetail'+id)"></td>
                                     </tr>
                                     <tr style="display: none" class="bg-warning" th:id="'scommentdetail'+${c.id}">
                                         <th colspan="3">

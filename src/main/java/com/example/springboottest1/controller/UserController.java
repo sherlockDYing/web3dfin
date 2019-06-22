@@ -5,7 +5,6 @@ import com.example.springboottest1.entity.User;
 import com.example.springboottest1.response.ErrorResponse;
 import com.example.springboottest1.response.SuccessResponse;
 import com.example.springboottest1.service.CommentService;
-import com.example.springboottest1.service.TokenService;
 import com.example.springboottest1.service.UserService;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,8 +31,7 @@ public class UserController {
     private UserService userService;
     @Autowired
     private CommentService commentService;
-    @Autowired
-    private TokenService tokenService;
+
 
     @RequestMapping(value = {"/loginPage"})
     public String loginHtml() {
