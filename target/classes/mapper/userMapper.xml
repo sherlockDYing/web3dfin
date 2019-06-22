@@ -30,7 +30,7 @@
 
     <!--插入，新用户注册-->
     <insert id="adduser" parameterType="User" keyProperty="id" useGeneratedKeys="true">
-        INSERT INTO User (
+        INSERT INTO user (
         username,
         gender,
         location,
@@ -53,18 +53,18 @@
 
     <!-- 按用户ID查找用户 -->
     <select id="findUserByID" parameterType="java.lang.String" resultType="User">
-        select * from User where id = #{id}
+        select * from user where id = #{id}
     </select>
 
 
     <!-- 按用户名查找用户 -->
     <select id="findUserByUsername" parameterType="java.lang.String" resultType="User">
-        select * from User where username = #{username}
+        select * from user where username = #{username}
     </select>
 
     <!-- 按用户名更新用户信息 -->
     <update id="updateUser" parameterType="User">
-        update User set username=#{username},gender=#{gender},location=#{location},introduction=#{introduction},workplace=#{workplace},role=#{role},password=#{password},userimgsrc=#{userimgsrc} where username= #{username}
+        update user set username=#{username},gender=#{gender},location=#{location},introduction=#{introduction},workplace=#{workplace},role=#{role},password=#{password},userimgsrc=#{userimgsrc} where username= #{username}
     </update>
 
 </mapper>

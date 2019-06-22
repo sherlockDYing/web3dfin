@@ -28,13 +28,13 @@
 
     <!-- 按雕塑名查找雕塑 -->
     <select id="findStatuerByStatuename" parameterType="java.lang.String" resultType="Statue">
-        select * from Statue where statuename = #{statuename}
+        select * from statue where statuename = #{statuename}
     </select>
 
 
     <!-- 按雕塑名更新收藏数 -->
     <update id="updateStatueLikenumber" parameterType="Statue">
-        update Statue set likenumber=#{likenumber} where statuename= #{statuename}
+        update statue set likenumber=#{likenumber} where statuename= #{statuename}
     </update>
 
 </mapper>

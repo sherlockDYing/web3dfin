@@ -1,0 +1,26 @@
+version: "3"
+services:
+  mysql:
+    image: mysql:5.7
+    environment:
+      MYSQL_ROOT_PASSWORD: '123456'
+      MYSQL_ALLOW_EMPTY_PASSWORD: 'no'
+      MYSQL_DATABASE: 'web3d'
+      MYSQL_USER: 'dingying'
+      MYSQL_PASSWORD: '123456'
+    volumes:
+      - "./db:/var/lib/mysql"
+    networks:
+      - web3d
+  background:
+    image: background:latest
+    volumes:
+      - ".:/server"
+    depends_on:
+      - mysql
+    ports:
+      - "9999:9999"
+    networks:
+      - web3d
+networks:
+  web3d:

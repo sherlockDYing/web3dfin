@@ -43,7 +43,7 @@ public class UserController {
         return "userRegister";
     }
 
-    //    @UserLoginToken
+
     @RequestMapping(value = {"/personalPage"})
     public String personalinfo(HttpSession httpSession, Model model) {
         //根据session获取username userid；

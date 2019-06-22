@@ -20,7 +20,7 @@
 
     <!--插入，新评论发布-->
     <insert id="addcomment" parameterType="Comment" keyProperty="id" useGeneratedKeys="true">
-        INSERT INTO Comment (
+        INSERT INTO comment (
     posttime,
   statuename,
   username,
@@ -31,13 +31,13 @@
 
     <!-- 按用户查找评论 -->
     <select id="findCommentByUsername" parameterType="java.lang.String" resultType="com.example.springboottest1.entity.Comment">
-        select * from Comment where username = #{username}
+        select * from comment where username = #{username}
     </select>
 
 
     <!-- 按雕塑名查找评论 -->
     <select id="findCommentByStatuename" parameterType="java.lang.String" resultType="com.example.springboottest1.entity.Comment">
-        select * from Comment where statuename = #{statuename}
+        select * from comment where statuename = #{statuename}
     </select>
 
 

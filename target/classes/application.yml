@@ -10,8 +10,8 @@ spring:
     mode: HTML5
   datasource:
     name: web3d
-    url: jdbc:mysql://127.0.0.1:3306/web3d
-    username: root
+    url: jdbc:mysql://mysql:3306/web3d
+    username: dingying
     password: 123456
     driver-class-name: com.mysql.jdbc.Driver
 
