@@ -10,7 +10,7 @@ spring:
     mode: HTML5
   datasource:
     name: web3d
-    url: jdbc:mysql://mysql:3306/web3d
+    url: jdbc:mysql://mysql:3306/web3d?useUnicode=true&characterEncoding=utf8&serverTimezone=GMT%2B8
     username: dingying
     password: 123456
     driver-class-name: com.mysql.jdbc.Driver
